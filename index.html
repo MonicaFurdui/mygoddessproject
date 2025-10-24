@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Goddess Project - Fitness, Nutrition & Image Consulting for Women 40+</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fafafa;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #ff1744 0%, #ff5983 100%);
+            color: white;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .cta-header {
+            background: #d81b60;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        
+        .cta-header:hover {
+            transform: scale(1.05);
+            background: #c2185b;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ff1744 0%, #ff5983 100%);
+            color: white;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            color: #f3e5f5;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+        
+        .cta-button {
+            background: #d81b60;
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(216, 27, 96, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(216, 27, 96, 0.6);
+        }
+        
+        /* Section Styles */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #ff1744;
+        }
+        
+        /* What's Included */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            color: #ff1744;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        /* Transformation */
+        .transformation {
+            background: linear-gradient(135deg, #fce4ec 0%, #fff0f5 100%);
+            padding: 4rem 2rem;
+        }
+        
+        .transformation-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .transformation h2 {
+            margin-bottom: 2rem;
+        }
+        
+        .transformation-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .stat {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #d81b60;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+        }
+        
+        /* Pricing */
+        .pricing {
+            background: white;
+        }
+        
+        .pricing-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #ff1744 0%, #ff5983 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(255, 23, 68, 0.3);
+            text-align: center;
+        }
+        
+        .pricing-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .price {
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        
+        .price-period {
+            font-size: 1.5rem;
+            color: #f3e5f5;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+        }
+        
+        .pricing-features li:before {
+            content: "✓";
+            margin-right: 1rem;
+            font-weight: bold;
+            color: #ffc0d3;
+            font-size: 1.5rem;
+        }
+        
+        /* Payment Form */
+        .payment-section {
+            max-width: 500px;
+            margin: 3rem auto 0;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ff1744;
+            font-weight: bold;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #ff1744;
+        }
+        
+        .payment-buttons {
+            display: grid;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .pay-button {
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .pay-cc {
+            background: #ff1744;
+            color: white;
+        }
+        
+        .pay-cc:hover {
+            background: #d81b60;
+            transform: translateY(-2px);
+        }
+        
+        .pay-apple {
+            background: black;
+            color: white;
+        }
+        
+        .pay-apple:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+        
+        .guarantee {
+            text-align: center;
+            margin-top: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .price {
+                font-size: 3rem;
+            }
+        }
+        
+        /* Success Message */
+        .success-message {
+            display: none;
+            max-width: 600px;
+            margin: 3rem auto;
+            background: #4caf50;
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">💋 THE GODDESS PROJECT</div>
+            <button class="cta-header" onclick="scrollToPayment()">Join Now</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>UNLEASH YOUR POWER</h1>
+        <div class="tagline">Fitness • Nutrition • Image Consulting • Confidence & Sexy Coaching</div>
+        <p class="hero-subtitle">
+            Reclaim your strength, confidence, and goddess power through personalized fitness, 
+            nutrition coaching, image consulting, and confidence & sexy coaching. Feel sexy, strong, and unstoppable again.
+        </p>
+        <button class="cta-button" onclick="scrollToPayment()">Transform Your Life - $200/Month</button>
+    </section>
+
+    <!-- What's Included -->
+    <section id="whats-included">
+        <h2>What's Included in Your Transformation</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💪</div>
+                <h3>Strength Training</h3>
+                <p>Daily live workouts designed for women 40+. Build muscle, burn fat, and feel powerful. Access to 200+ workout videos in your personal app.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🥗</div>
+                <h3>Personalized Nutrition</h3>
+                <p>Custom meal plans that work WITH your hormones, not against them. Learn to eat more, weigh less, and fuel your goddess body properly.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">👗</div>
+                <h3>Image Consulting</h3>
+                <p>Style guidance to showcase your transformation. Learn what flatters your body, colors that make you glow, and how to dress like the goddess you are.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">💋</div>
+                <h3>Confidence & Sexy Coaching</h3>
+                <p>Rediscover your inner goddess. Learn to own your sensuality, rebuild confidence, and bring sexy back at any age. Feel desirable, powerful, and unapologetically YOU.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">👯</div>
+                <h3>Goddess Community</h3>
+                <p>Private community of women 40+ on the same journey. Daily support, motivation, and accountability from women who GET IT.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Your Personal App</h3>
+                <p>Everything in one place - workouts, meal plans, progress tracking, and direct coach access. Train anywhere, anytime.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🔥</div>
+                <h3>Daily Accountability</h3>
+                <p>Daily check-ins, live sessions, and support. Never feel alone on your journey. We show up for you every single day.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transformation -->
+    <section class="transformation">
+        <div class="transformation-content">
+            <h2>Real Women, Real Results</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                Join 300+ women over 40 who have reclaimed their strength, confidence, and sexy. 
+                This isn't just fitness - it's your goddess awakening.
+            </p>
+            
+            <div class="transformation-stats">
+                <div class="stat">
+                    <div class="stat-number">300+</div>
+                    <div class="stat-label">Goddesses Transforming</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">Stay Beyond 6 Months</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">18 lbs</div>
+                    <div class="stat-label">Average Weight Lost</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing & Payment -->
+    <section class="pricing" id="pricing">
+        <h2>Your Goddess Transformation Starts Today</h2>
+        
+        <div class="pricing-card">
+            <h3>The Complete Goddess Program</h3>
+            <div class="price">$200<span class="price-period">/month</span></div>
+            <p style="margin-bottom: 2rem;">Cancel anytime. No long-term commitment required.</p>
+            
+            <ul class="pricing-features">
+                <li>Daily live workout sessions (5x/week)</li>
+                <li>Personalized meal plans & nutrition coaching</li>
+                <li>Image consulting & style guidance</li>
+                <li>Confidence & sexy coaching sessions</li>
+                <li>200+ workout video library</li>
+                <li>Private goddess community access</li>
+                <li>Personal training app (Trainerize)</li>
+                <li>Direct coach support</li>
+                <li>Weekly group coaching calls</li>
+                <li>Progress tracking & accountability</li>
+                <li>Recipe database & meal prep guides</li>
+            </ul>
+        </div>
+
+        <!-- Payment Form -->
+        <div class="payment-section">
+            <h3 style="text-align: center; color: #ff1744; margin-bottom: 1.5rem;">Secure Checkout</h3>
+            
+            <form id="paymentForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required placeholder="Jane Goddess">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required placeholder="yourname@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="card">Credit Card Number</label>
+                    <input type="text" id="card" placeholder="4242 4242 4242 4242" maxlength="19">
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label for="expiry">Expiry (MM/YY)</label>
+                        <input type="text" id="expiry" placeholder="12/25" maxlength="5">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" placeholder="123" maxlength="4">
+                    </div>
+                </div>
+                
+                <div class="payment-buttons">
+                    <button type="submit" class="pay-button pay-cc">💳 Pay with Credit Card - $200/mo</button>
+                    <button type="button" class="pay-button pay-apple" onclick="payWithApple()">🍎 Pay with Apple Pay - $200/mo</button>
+                </div>
+            </form>
+            
+            <div class="guarantee">
+                <p><strong>🔒 Secure Payment</strong> • Cancel Anytime • 100% Money-Back Guarantee</p>
+                <p style="margin-top: 0.5rem;">Your transformation starts immediately after payment.</p>
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <h2>🎉 WELCOME TO THE GODDESS PROJECT! 🎉</h2>
+            <p style="font-size: 1.2rem; margin-top: 1rem;">
+                Your transformation begins NOW! Check your email for:
+            </p>
+            <ul style="text-align: left; margin: 1.5rem auto; max-width: 400px;">
+                <li>App download link & login details</li>
+                <li>Welcome to the private community</li>
+                <li>Your first workout (starts tomorrow!)</li>
+                <li>Onboarding call schedule</li>
+            </ul>
+            <p style="margin-top: 1.5rem;">
+                <strong>You just made the best investment in yourself. Let's make you feel like the goddess you are! 👑</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 The Goddess Project. All Rights Reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+            <a href="#" style="color: #ff5983; text-decoration: none;">Terms</a> • 
+            <a href="#" style="color: #ff5983; text-decoration: none;">Privacy</a> • 
+            <a href="#" style="color: #ff5983; text-decoration: none;">Contact</a>
+        </p>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        function scrollToPayment() {
+            document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Format credit card input
+        document.getElementById('card').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s/g, '');
+            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+            e.target.value = formattedValue;
+        });
+
+        // Format expiry input
+        document.getElementById('expiry').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.slice(0, 2) + '/' + value.slice(2, 4);
+            }
+            e.target.value = value;
+        });
+
+        // Handle form submission
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In real implementation, this would integrate with Stripe
+            // For now, just show success message
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            if (name && email) {
+                // Hide form
+                document.querySelector('.payment-section').style.display = 'none';
+                document.querySelector('.pricing-card').style.display = 'none';
+                
+                // Show success
+                document.getElementById('successMessage').classList.add('show');
+                
+                // Scroll to success message
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+                
+                // In real app: Send to payment processor
+                console.log('Processing payment for:', { name, email, amount: 200 });
+            }
+        });
+
+        // Apple Pay handler
+        function payWithApple() {
+            // In real implementation, this would trigger Apple Pay
+            alert('Apple Pay integration would go here. In production, this connects to your payment processor (Stripe, etc.) with Apple Pay enabled.');
+            
+            // For demo purposes, show the same success flow
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            if (name && email) {
+                document.querySelector('.payment-section').style.display = 'none';
+                document.querySelector('.pricing-card').style.display = 'none';
+                document.getElementById('successMessage').classList.add('show');
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert('Please fill in your name and email first');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Goddess Project - Fitness, Nutrition, Image Consulting & Empowerment for Women </title>
+    <title>My Goddess Project - Fitness, Nutrition, Image Consulting & Empowerment for Women</title>
+    <script src="https://js.stripe.com/v3/"></script>
     <style>
         * {
             margin: 0;
@@ -171,7 +172,7 @@
 
         .transformation-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmin(200px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -248,7 +249,7 @@
                     font-size: 1.5rem;
                 }
 
-        /* Payment Form */
+        /* Payment Section */
         .payment-section {
             max-width: 500px;
             margin: 3rem auto 0;
@@ -256,66 +257,25 @@
             padding: 2rem;
             border-radius: 15px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-            .form-group label {
-                display: block;
-                margin-bottom: 0.5rem;
-                color: #ff1744;
-                font-weight: bold;
-            }
-
-            .form-group input {
-                width: 100%;
-                padding: 0.8rem;
-                border: 2px solid #e0e0e0;
-                border-radius: 8px;
-                font-size: 1rem;
-                transition: border 0.3s;
-            }
-
-                .form-group input:focus {
-                    outline: none;
-                    border-color: #ff1744;
-                }
-
-        .payment-buttons {
-            display: grid;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .pay-button {
-            padding: 1rem;
+        .stripe-button {
+            width: 100%;
+            padding: 1.2rem;
+            background: #ff1744;
+            color: white;
             border: none;
             border-radius: 10px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
+            margin-bottom: 1rem;
         }
 
-        .pay-cc {
-            background: #ff1744;
-            color: white;
-        }
-
-            .pay-cc:hover {
+            .stripe-button:hover {
                 background: #d81b60;
-                transform: translateY(-2px);
-            }
-
-        .pay-apple {
-            background: black;
-            color: white;
-        }
-
-            .pay-apple:hover {
-                background: #333;
                 transform: translateY(-2px);
             }
 
@@ -439,61 +399,18 @@
                 padding: 1.5rem;
             }
 
-            .pay-button {
-                font-size: 1rem;
-                padding: 0.9rem;
-            }
-
             footer {
                 padding: 2rem 1rem;
                 font-size: 0.9rem;
             }
         }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 1.7rem;
-            }
-
-            .hero .tagline {
-                font-size: 0.9rem;
-            }
-
-            .feature-icon {
-                font-size: 2.5rem;
-            }
-
-            .stat-number {
-                font-size: 2.5rem;
-            }
-
-            .price {
-                font-size: 2.5rem;
-            }
-        }
-
-        /* Success Message */
-        .success-message {
-            display: none;
-            max-width: 600px;
-            margin: 3rem auto;
-            background: #4caf50;
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-        }
-
-            .success-message.show {
-                display: block;
-            }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="header-content">
-            <div class="logo"> 💋 MY GODDESS PROJECT</div>
+            <div class="logo">💋 MY GODDESS PROJECT</div>
             <button class="cta-header" onclick="scrollToPayment()">Join Now</button>
         </div>
     </header>
@@ -545,7 +462,7 @@
 
             <div class="feature-card">
                 <div class="feature-icon">📱</div>
-                <h3>Your Personal Finess App</h3>
+                <h3>Your Personal Fitness App</h3>
                 <p>Everything in one place - workouts, meal plans, progress tracking, and direct coach access. Train anywhere, anytime.</p>
             </div>
 
@@ -562,7 +479,7 @@
         <div class="transformation-content">
             <h2>Real Women, Real Results</h2>
             <p style="font-size: 1.2rem; margin-bottom: 2rem;">
-                Join 100+ women over  who are claiming their strength, confidence, and sexy.
+                Join 100+ women who are claiming their strength, confidence, and sexy.
                 This isn't just fitness - it's your goddess awakening.
             </p>
 
@@ -581,7 +498,7 @@
 
     <!-- Pricing & Payment -->
     <section class="pricing" id="pricing">
-        <h2>Your Goddess Transformation Starts Dec 1st </h2>
+        <h2>Your Goddess Transformation Starts Dec 1st</h2>
 
         <div class="pricing-card">
             <h3>The Complete Goddess Program</h3>
@@ -597,70 +514,23 @@
                 <li>Private goddess community access</li>
                 <li>Personal training app</li>
                 <li>Direct coach support</li>
-                <li>Accountabilty buddy</li>
+                <li>Accountability buddy</li>
                 <li>Progress tracking</li>
                 <li>Recipe database & meal prep guides</li>
             </ul>
         </div>
 
-        <!-- Payment Form -->
+        <!-- Payment Section -->
         <div class="payment-section">
-            <h3 style="text-align: center; color: #ff1744; margin-bottom: 1.5rem;">Secure Checkout</h3>
-
-            <form id="paymentForm">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" required placeholder="Jane Goddess">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" required placeholder="yourname@example.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="card">Credit Card Number</label>
-                    <input type="text" id="card" placeholder="4242 4242 4242 4242" maxlength="19">
-                </div>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                    <div class="form-group">
-                        <label for="expiry">Expiry (MM/YY)</label>
-                        <input type="text" id="expiry" placeholder="12/25" maxlength="5">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="cvv">CVV</label>
-                        <input type="text" id="cvv" placeholder="123" maxlength="4">
-                    </div>
-                </div>
-
-                <div class="payment-buttons">
-                    <button type="submit" class="pay-button pay-cc">💳 Pay with Credit Card - $250/mo</button>
-                    <button type="button" class="pay-button pay-apple" onclick="payWithApple()">🍎 Pay with Apple Pay - $250/mo</button>
-                </div>
-            </form>
-
+            <h3 style="color: #ff1744; margin-bottom: 1.5rem;">Secure Checkout with Stripe</h3>
+            <button id="checkout-button" class="stripe-button">
+                💳 Subscribe Now - $250/month
+            </button>
             <div class="guarantee">
-                <p><strong>🔒 Secure Payment</strong> • Cancel Anytime • 100% Money-Back Guarantee</p>
+                <p><strong>🔒 Secure Payment with Stripe</strong></p>
+                <p>Cancel anytime • 100% Money-Back Guarantee</p>
                 <p style="margin-top: 0.5rem;">Your transformation starts Dec 1st.</p>
             </div>
-        </div>
-
-        <!-- Success Message -->
-        <div class="success-message" id="successMessage">
-            <h2>🎉 WELCOME TO THE GODDESS PROJECT! 🎉</h2>
-            <p style="font-size: 1.2rem; margin-top: 1rem;">
-                Your transformation begins Dec 1st! Check your email for:
-            </p>
-            <ul style="text-align: left; margin: 1.5rem auto; max-width: 400px;">
-                <li>App download link & login details</li>
-                <li>Welcome to the private community</li>
-                <li>Your first workout Dec 1st</li>
-            </ul>
-            <p style="margin-top: 1.5rem;">
-                <strong>Lets make you feel like the goddess you are! 👑</strong>
-            </p>
         </div>
     </section>
 
@@ -675,71 +545,40 @@
     </footer>
 
     <script>
+        // Initialize Stripe with your publishable key
+        // REPLACE WITH YOUR ACTUAL STRIPE PUBLISHABLE KEY
+        const stripe = Stripe('pk_test_YOUR_PUBLISHABLE_KEY_HERE');
+
         // Smooth scroll
         function scrollToPayment() {
             document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Format credit card input
-        document.getElementById('card').addEventListener('input', function (e) {
-            let value = e.target.value.replace(/\s/g, '');
-            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
-            e.target.value = formattedValue;
-        });
+        // Handle checkout button click
+        document.getElementById('checkout-button').addEventListener('click', async function() {
+            // Replace with your actual Price ID from Stripe Dashboard
+            const priceId = 'price_YOUR_PRICE_ID_HERE';
 
-        // Format expiry input
-        document.getElementById('expiry').addEventListener('input', function (e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length >= 2) {
-                value = value.slice(0, 2) + '/' + value.slice(2, 4);
-            }
-            e.target.value = value;
-        });
+            try {
+                const { error } = await stripe.redirectToCheckout({
+                    lineItems: [{
+                        price: priceId,
+                        quantity: 1
+                    }],
+                    mode: 'subscription',
+                    successUrl: window.location.origin + '/success.html',
+                    cancelUrl: window.location.origin + '/index.html',
+                    customerEmail: '', // Optional: pre-fill customer email
+                });
 
-        // Handle form submission
-        document.getElementById('paymentForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // In real implementation, this would integrate with Stripe
-            // For now, just show success message
-
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-
-            if (name && email) {
-                // Hide form
-                document.querySelector('.payment-section').style.display = 'none';
-                document.querySelector('.pricing-card').style.display = 'none';
-
-                // Show success
-                document.getElementById('successMessage').classList.add('show');
-
-                // Scroll to success message
-                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
-
-                // In real app: Send to payment processor
-                console.log('Processing payment for:', { name, email, amount: 200 });
+                if (error) {
+                    alert('Payment failed: ' + error.message);
+                }
+            } catch (err) {
+                alert('An error occurred. Please try again.');
+                console.error(err);
             }
         });
-
-        // Apple Pay handler
-        function payWithApple() {
-            // In real implementation, this would trigger Apple Pay
-            alert('Apple Pay integration would go here. In production, this connects to your payment processor (Stripe, etc.) with Apple Pay enabled.');
-
-            // For demo purposes, show the same success flow
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-
-            if (name && email) {
-                document.querySelector('.payment-section').style.display = 'none';
-                document.querySelector('.pricing-card').style.display = 'none';
-                document.getElementById('successMessage').classList.add('show');
-                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
-            } else {
-                alert('Please fill in your name and email first');
-            }
-        }
     </script>
 </body>
 </html>

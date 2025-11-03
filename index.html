@@ -547,7 +547,7 @@
     <script>
         // Initialize Stripe with your publishable key
         // REPLACE WITH YOUR ACTUAL STRIPE PUBLISHABLE KEY
-        const stripe = Stripe('pk_test_YOUR_PUBLISHABLE_KEY_HERE');
+        const stripe = Stripe('pk_test_51SPGMzJ8kJOaYN6gEa16NWuYvunF4zUujJ1k9NqpJZA9LwElD7kX1pKNPFZaSNKtoq3G6vYmmJNMx2uzLUxzrmKG000Ezt9YIh');
 
         // Smooth scroll
         function scrollToPayment() {
@@ -557,7 +557,7 @@
         // Handle checkout button click
         document.getElementById('checkout-button').addEventListener('click', async function() {
             // Replace with your actual Price ID from Stripe Dashboard
-            const priceId = 'price_YOUR_PRICE_ID_HERE';
+            const priceId = 'prod_TLyZusyEOgdrMd';
 
             try {
                 const { error } = await stripe.redirectToCheckout({

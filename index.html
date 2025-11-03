@@ -8,10 +8,10 @@
     <!-- SEO -->
     <meta name="description" content="My Goddess Project helps women transform body, style, and confidence with fitness, nutrition, image consulting, and mindset coaching.">
 
-    <!-- Fonts: elegant headings + clean body -->
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Favicon (use your circular logo file) -->
+    <!-- Favicon -->
     <link rel="icon" href="logo.png" type="image/png">
 
     <!-- Stripe -->
@@ -20,11 +20,11 @@
     <style>
         /* ====== Brand Tokens ====== */
         :root {
-            --brand-pink-1: #ff1744; /* matches header/hero gradient start */
-            --brand-pink-2: #ff5983; /* matches header/hero gradient end   */
+            --brand-pink-1: #ff1744;
+            --brand-pink-2: #ff5983;
             --text: #2a2a2a;
             --muted: #666;
-            --cream: #fff7f9; /* soft section background */
+            --cream: #fff7f9;
             --card-shadow: 0 8px 24px rgba(0,0,0,0.08);
         }
 
@@ -56,11 +56,11 @@
             color: var(--text);
         }
 
-        /* ====== Header ====== */
+        /* ====== Header (polished) ====== */
         header {
             background: linear-gradient(135deg, var(--brand-pink-1) 0%, var(--brand-pink-2) 100%);
             color: white;
-            padding: 1rem 2rem;
+            padding: 0.7rem 2rem; /* slightly reduced height for balance */
             position: fixed;
             width: 100%;
             top: 0;
@@ -68,6 +68,16 @@
             box-shadow: 0 8px 18px rgba(255, 23, 68, 0.18);
             backdrop-filter: saturate(110%);
         }
+            /* soft divider line under header */
+            header::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 1px;
+                background: rgba(255,255,255,0.30);
+            }
 
         .header-content {
             max-width: 1200px;
@@ -76,14 +86,33 @@
             justify-content: space-between;
             align-items: center;
             gap: 1rem;
+            position: relative;
+            z-index: 1; /* sit above divider */
+        }
+
+        /* ====== Professional Logo Area ====== */
+        .logo {
+            display: flex;
+            align-items: center;
         }
 
         .logo-img {
-            height: 80px; /* balanced with header padding */
+            height: 42px; /* refined size for header */
             width: auto;
             display: block;
             vertical-align: middle;
+            /* circular badge + subtle halo using brand gradient */
+            border-radius: 50%;
+            padding: 6px; /* ring thickness */
+            background: linear-gradient(135deg, var(--brand-pink-1) 0%, var(--brand-pink-2) 100%);
+            box-shadow: 0 0 10px rgba(255,255,255,0.25);
+            transition: transform .25s ease, box-shadow .25s ease;
         }
+
+            .logo-img:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 18px rgba(255,255,255,0.35);
+            }
 
         .cta-header {
             background: linear-gradient(135deg, #ff4d7a, #ff7aa3);
@@ -340,7 +369,7 @@
         /* ====== Responsive ====== */
         @media (max-width: 768px) {
             header {
-                padding: 1rem;
+                padding: 0.7rem 1rem;
             }
 
             .header-content {
@@ -350,9 +379,10 @@
             }
 
             .logo-img {
-                height: 78px;
+                height: 34px;
+                padding: 5px;
             }
-
+            /* slightly smaller badge on mobile */
             .cta-header {
                 padding: .6rem 1.2rem;
                 font-size: .9rem;
@@ -526,7 +556,7 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
+    <!-- Testimonials -->
     <section class="is-cream">
         <div style="max-width: 1000px; margin: 0 auto;">
             <h2>What Goddesses Are Saying</h2>
@@ -615,7 +645,7 @@
     </footer>
 
     <script>
-    // Initialize Stripe with your publishable key (currently TEST mode)
+    // Initialize Stripe (TEST mode)
     const stripe = Stripe('pk_test_51SPGMzJ8kJOaYN6gEa16NWuYvunF4zUujJ1k9NqpJZA9LwElD7kX1pKNPFZaSNKtoq3G6vYmmJNMx2uzLUxzrmKG000Ezt9YIh');
 
     // Smooth scroll
@@ -623,20 +653,18 @@
       document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Handle checkout button click
+    // Checkout
     document.getElementById('checkout-button').addEventListener('click', async function() {
       const priceId = 'price_1SPGc6J8kJOaYN6gqO1UzIOE'; // TEST price
-
       try {
         const { error } = await stripe.redirectToCheckout({
           lineItems: [{ price: priceId, quantity: 1 }],
           mode: 'subscription',
           successUrl: window.location.origin + '/success.html',
           cancelUrl: window.location.origin + '/index.html',
-          customerEmail: '', // optional prefill
+          customerEmail: '',
         });
-
-        if (error) { alert('Payment failed: ' + error.message); }
+        if (error) alert('Payment failed: ' + error.message);
       } catch (err) {
         alert('An error occurred. Please try again.');
         console.error(err);

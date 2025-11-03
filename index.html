@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Goddess Project - Fitness, Nutrition, Image Consulting & Goddess Confidence for Women</title>
     <script src="https://js.stripe.com/v3/"></script>
-    <style>
+    <style
+
         * {
             margin: 0;
             padding: 0;
@@ -107,6 +108,21 @@
                 transform: translateY(-3px);
                 box-shadow: 0 6px 20px rgba(216, 27, 96, 0.6);
             }
+           /* Logo image sizing */
+.logo-img {
+  height: 36px;      /* adjust as needed */
+  width: auto;
+  display: block;
+}
+
+/* Optional: make header layout resilient if logo is wider */
+.header-content {
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .logo-img { height: 28px; }
+}
 
         /* Section Styles */
         section {

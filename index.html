@@ -1,46 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Goddess Project - Fitness, Nutrition, Image Consulting & Goddess Confidence for Women</title>
+
+    <!-- SEO -->
+    <meta name="description" content="My Goddess Project helps women transform body, style, and confidence with fitness, nutrition, image consulting, and mindset coaching.">
+
+    <!-- Fonts: elegant headings + clean body -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Favicon (use your circular logo file) -->
+    <link rel="icon" href="logo.png" type="image/png">
+
+    <!-- Stripe -->
     <script src="https://js.stripe.com/v3/"></script>
+
     <style>
-        .logo-img {
-            height: 80px; /* reduce size from default 36px */
-            width: auto;
-            display: block;
-            vertical-align: middle;
+        /* ====== Brand Tokens ====== */
+        :root {
+            --brand-pink-1: #ff1744; /* matches header/hero gradient start */
+            --brand-pink-2: #ff5983; /* matches header/hero gradient end   */
+            --text: #2a2a2a;
+            --muted: #666;
+            --cream: #fff7f9; /* soft section background */
+            --card-shadow: 0 8px 24px rgba(0,0,0,0.08);
         }
 
-        @media (max-width: 768px) {
-            .logo-img {
-                height: 78px;
-            }
-        }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html, body {
+            color: var(--text);
+        }
+
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
             background: #fafafa;
         }
 
-        /* Header */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: .3px;
+        }
+
+        p {
+            line-height: 1.7;
+            max-width: 720px;
+            margin: 0 auto;
+            color: var(--text);
+        }
+
+        /* ====== Header ====== */
         header {
-            background: linear-gradient(135deg, #ff1744 0%, #ff5983 100%);
+            background: linear-gradient(135deg, var(--brand-pink-1) 0%, var(--brand-pink-2) 100%);
             color: white;
             padding: 1rem 2rem;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 18px rgba(255, 23, 68, 0.18);
+            backdrop-filter: saturate(110%);
         }
 
         .header-content {
@@ -49,35 +75,38 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1rem;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            letter-spacing: 1px;
+        .logo-img {
+            height: 36px; /* balanced with header padding */
+            width: auto;
+            display: block;
+            vertical-align: middle;
         }
 
         .cta-header {
-            background: #d81b60;
-            color: white;
-            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #ff4d7a, #ff7aa3);
+            color: #fff;
+            padding: .65rem 1.25rem;
             border: none;
-            border-radius: 25px;
+            border-radius: 999px;
             cursor: pointer;
-            font-weight: bold;
-            transition: transform 0.2s;
+            font-weight: 600;
+            box-shadow: 0 6px 16px rgba(255, 89, 131, .35);
+            transition: transform .15s ease, box-shadow .15s ease;
         }
 
             .cta-header:hover {
-                transform: scale(1.05);
-                background: #c2185b;
+                transform: translateY(-1px);
+                box-shadow: 0 10px 24px rgba(255, 89, 131, .45);
             }
 
-        /* Hero Section */
+        /* ====== Hero ====== */
         .hero {
-            background: linear-gradient(135deg, #ff1744 0%, #ff5983 100%);
+            background: linear-gradient(135deg, var(--brand-pink-1) 0%, var(--brand-pink-2) 100%);
             color: white;
-            padding: 8rem 2rem 4rem;
+            padding: 9rem 2rem 5rem;
             text-align: center;
             margin-top: 60px;
         }
@@ -86,13 +115,14 @@
                 font-size: 3rem;
                 margin-bottom: 1rem;
                 font-weight: 700;
+                color: #fff;
             }
 
             .hero .tagline {
                 font-size: 1.5rem;
                 margin-bottom: 2rem;
                 font-weight: 300;
-                color: #f3e5f5;
+                color: #fde7ef;
             }
 
         .hero-subtitle {
@@ -100,41 +130,41 @@
             max-width: 700px;
             margin: 0 auto 2rem;
             line-height: 1.8;
+            color: #fff;
         }
 
         .cta-button {
-            background: #d81b60;
-            color: white;
-            padding: 1rem 2.5rem;
-            font-size: 1.2rem;
+            background: linear-gradient(135deg, #ff4d7a, #ff7aa3);
+            color: #fff;
             border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(216, 27, 96, 0.4);
+            border-radius: 999px;
+            padding: 14px 28px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 12px 28px rgba(255, 89, 131, .35);
+            transition: transform .2s ease, box-shadow .2s ease;
         }
 
             .cta-button:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 6px 20px rgba(216, 27, 96, 0.6);
+                transform: translateY(-2px);
+                box-shadow: 0 16px 36px rgba(255, 89, 131, .45);
             }
 
-        /* Section Styles */
+        /* ====== Sections ====== */
         section {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 100px 2rem;
         }
 
         h2 {
             font-size: 2.5rem;
             text-align: center;
-            margin-bottom: 3rem;
-            color: #ff1744;
+            margin-bottom: 2.25rem;
+            color: var(--brand-pink-1);
         }
 
-        /* What's Included */
+        /* Features */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -145,14 +175,14 @@
         .feature-card {
             background: white;
             padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s, box-shadow .3s;
         }
 
             .feature-card:hover {
                 transform: translateY(-5px);
-                box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+                box-shadow: 0 12px 30px rgba(0,0,0,0.12);
             }
 
         .feature-icon {
@@ -161,15 +191,14 @@
         }
 
         .feature-card h3 {
-            color: #ff1744;
+            color: var(--brand-pink-1);
             margin-bottom: 1rem;
             font-size: 1.5rem;
         }
 
         /* Transformation */
         .transformation {
-            background: linear-gradient(135deg, #fce4ec 0%, #fff0f5 100%);
-            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #fde1ea 0%, #fff2f7 100%);
         }
 
         .transformation-content {
@@ -178,19 +207,15 @@
             text-align: center;
         }
 
-        .transformation h2 {
-            margin-bottom: 2rem;
-        }
-
         .transformation-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
 
         .stat {
-            background: white;
+            background: #fff;
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -200,38 +225,39 @@
             font-size: 3rem;
             font-weight: bold;
             color: #d81b60;
-            margin-bottom: 0.5rem;
+            margin-bottom: .5rem;
         }
 
         .stat-label {
-            font-size: 1.1rem;
-            color: #666;
+            font-size: 1.05rem;
+            color: var(--muted);
         }
 
         /* Pricing */
         .pricing {
-            background: white;
+            background: #fff;
         }
 
         .pricing-card {
             max-width: 600px;
             margin: 0 auto;
-            background: linear-gradient(135deg, #ff1744 0%, #ff5983 100%);
+            background: linear-gradient(135deg, var(--brand-pink-1) 0%, var(--brand-pink-2) 100%);
             color: white;
             padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(255, 23, 68, 0.3);
+            border-radius: 22px;
+            box-shadow: 0 16px 40px rgba(255, 23, 68, 0.22);
             text-align: center;
         }
 
             .pricing-card h3 {
                 font-size: 2rem;
                 margin-bottom: 1rem;
+                color: #fff;
             }
 
         .price {
             font-size: 4rem;
-            font-weight: bold;
+            font-weight: 700;
             margin: 1rem 0;
         }
 
@@ -247,7 +273,7 @@
         }
 
             .pricing-features li {
-                padding: 0.8rem 0;
+                padding: .8rem 0;
                 border-bottom: 1px solid rgba(255,255,255,0.2);
                 display: flex;
                 align-items: center;
@@ -256,12 +282,12 @@
                 .pricing-features li:before {
                     content: "✓";
                     margin-right: 1rem;
-                    font-weight: bold;
+                    font-weight: 700;
                     color: #ffc0d3;
-                    font-size: 1.5rem;
+                    font-size: 1.4rem;
                 }
 
-        /* Payment Section */
+        /* Payment box */
         .payment-section {
             max-width: 500px;
             margin: 3rem auto 0;
@@ -276,13 +302,13 @@
             width: 100%;
             padding: 1.2rem;
             background: #ff1744;
-            color: white;
+            color: #fff;
             border: none;
             border-radius: 10px;
             font-size: 1.2rem;
-            font-weight: bold;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all .3s;
             margin-bottom: 1rem;
         }
 
@@ -294,19 +320,24 @@
         .guarantee {
             text-align: center;
             margin-top: 2rem;
-            color: #666;
-            font-size: 0.9rem;
+            color: var(--muted);
+            font-size: .95rem;
+        }
+
+        /* Cream helper for alt sections */
+        .is-cream {
+            background: var(--cream);
         }
 
         /* Footer */
         footer {
-            background: #333;
-            color: white;
+            background: #222;
+            color: #fff;
             text-align: center;
             padding: 2rem;
         }
 
-        /* Responsive */
+        /* ====== Responsive ====== */
         @media (max-width: 768px) {
             header {
                 padding: 1rem;
@@ -314,17 +345,17 @@
 
             .header-content {
                 flex-direction: column;
-                gap: 0.5rem;
+                gap: .5rem;
                 text-align: center;
             }
 
-            .logo {
-                font-size: 1.2rem;
+            .logo-img {
+                height: 28px;
             }
 
             .cta-header {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.9rem;
+                padding: .6rem 1.2rem;
+                font-size: .9rem;
             }
 
             .hero {
@@ -348,17 +379,17 @@
 
             .cta-button {
                 font-size: 1rem;
-                padding: 0.9rem 2rem;
+                padding: .9rem 2rem;
                 width: 100%;
                 max-width: 320px;
             }
 
             section {
-                padding: 3rem 1.5rem;
+                padding: 80px 1.5rem;
             }
 
             h2 {
-                font-size: 1.8rem;
+                font-size: 1.9rem;
                 margin-bottom: 2rem;
                 padding: 0 1rem;
             }
@@ -377,7 +408,7 @@
                 }
 
             .transformation {
-                padding: 3rem 1.5rem;
+                padding: 80px 1.5rem;
             }
 
             .transformation-stats {
@@ -390,10 +421,6 @@
                 margin: 0 1rem;
             }
 
-                .pricing-card h3 {
-                    font-size: 1.5rem;
-                }
-
             .price {
                 font-size: 3rem;
             }
@@ -403,7 +430,7 @@
             }
 
             .pricing-features {
-                font-size: 0.95rem;
+                font-size: .95rem;
             }
 
             .payment-section {
@@ -413,7 +440,7 @@
 
             footer {
                 padding: 2rem 1rem;
-                font-size: 0.9rem;
+                font-size: .9rem;
             }
         }
     </style>
@@ -435,15 +462,11 @@
         <div class="tagline">Fitness • Nutrition • Image Consulting • Goddess Confidence</div>
         <p class="hero-subtitle">
             The ONLY program that transforms your body, style, AND confidence.
-            Get fitness + nutrition + image consulting + goddess confidence coaching —
-            everything you need to feel sexy, powerful, and unstoppable.
-            Build the body that matches your ambition. Dress for the rooms you're entering.
-            Command attention without saying a word. This is your level up.
+            Get fitness + nutrition + image consulting + goddess confidence coaching — everything you need to feel sexy, powerful, and unstoppable.
+            Build the body that matches your ambition. Dress for the rooms you're entering. Command attention without saying a word. This is your level up.
         </p>
         <button class="cta-button" onclick="scrollToPayment()">Claim Your Goddess Transformation ✨</button>
     </section>
-
-
 
     <!-- What's Included -->
     <section id="whats-included">
@@ -452,41 +475,32 @@
             <div class="feature-card">
                 <div class="feature-icon">💪</div>
                 <h3>Strength Training</h3>
-                <p> Build your goddess body: Strong, feminine, powerful, toned, undeniably sexy. Build muscle, burn fat, and feel powerful. Access to your personal fitness app. Access to fitness coaches and weekly lives so you can ask your fitness questions.</p>
+                <p>Build your goddess body: strong, feminine, powerful, toned, undeniably sexy. Access to your personal fitness app and weekly lives so you can ask your fitness questions.</p>
             </div>
-
             <div class="feature-card">
                 <div class="feature-icon">🥗</div>
                 <h3>Personalized Nutrition</h3>
-                <p>Custom meal plans designed for women that work WITH your hormones, not against them. Learn to eat more, weigh less, and fuel your goddess body properly. Eat like a goddess: Delicious meals that make you glow</p>
+                <p>Custom meal plans designed for women that work WITH your hormones. Eat more, weigh less, and fuel your goddess body. Delicious meals that make you glow.</p>
             </div>
-
             <div class="feature-card">
                 <div class="feature-icon">👗</div>
                 <h3>Image Consulting & Mini Makeover</h3>
-                <p>Style guidance and mini makeover. Learn what flatters your body, colors that make you glow, and how to dress like the goddess you are.</p>
+                <p>Learn what flatters your body and which colors make you glow so you dress like the goddess you are.</p>
             </div>
-
             <div class="feature-card">
                 <div class="feature-icon">💋</div>
                 <h3>Goddess Confidence Coaching</h3>
-                <p>
-                    Discover your inner goddess through weekly empowerment challenges. Command attention the moment you enter a room. Weekly challenges designed
-                    to amplify your natural magnetism, refine your personal brand, and ensure
-                    you're unforgettable. Not about "feeling" confident — about BEING confident.
-                </p>
+                <p>Weekly challenges to amplify your magnetism, refine your personal brand, and make you unforgettable. Not about “feeling” confident — about BEING confident.</p>
             </div>
-
             <div class="feature-card">
                 <div class="feature-icon">👯</div>
-                <h3>Your goddess sisterhood: Daily support & encouragement</h3>
-                <p>Private community of women on the same journey. You will be assigned an accountability goddess, never feel alone on your journey.</p>
+                <h3>Goddess Sisterhood</h3>
+                <p>Private community with daily support. You’ll be assigned an accountability goddess so you never feel alone on your journey.</p>
             </div>
-
             <div class="feature-card">
                 <div class="feature-icon">📱</div>
                 <h3>Your Personal Fitness App</h3>
-                <p>Everything in one place - workouts, meal plans, progress tracking, and direct coach access. Train anywhere, anytime.</p>
+                <p>Everything in one place — workouts, meal plans, progress tracking, and direct coach access. Train anywhere, anytime.</p>
             </div>
         </div>
     </section>
@@ -496,8 +510,7 @@
         <div class="transformation-content">
             <h2>Real Women, Real Results</h2>
             <p style="font-size: 1.2rem; margin-bottom: 2rem;">
-                Join 100+ women who are claiming their strength, confidence, and sexy.
-                This isn't just fitness - it's your goddess awakening.
+                Join 100+ women who are claiming their strength, confidence, and sexy. This isn't just fitness — it's your goddess awakening.
             </p>
 
             <div class="transformation-stats">
@@ -514,34 +527,34 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section style="background: #f9f9f9; padding: 4rem 2rem;">
+    <section class="is-cream">
         <div style="max-width: 1000px; margin: 0 auto;">
             <h2>What Goddesses Are Saying</h2>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                    <p style="font-size: 1.1rem; margin-bottom: 1rem; color: #666;">
+                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: var(--card-shadow);">
+                    <p style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--muted);">
                         "Finally, a program that doesn't just focus on weight loss. The image consulting changed how I see myself!"
                     </p>
-                    <p style="font-weight: bold; color: #ff1744;">- Sarah, 42</p>
+                    <p style="font-weight: bold; color: var(--brand-pink-1);">- Sarah, 42</p>
                 </div>
 
-                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                    <p style="font-size: 1.1rem; margin-bottom: 1rem; color: #666;">
+                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: var(--card-shadow);">
+                    <p style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--muted);">
                         "I lost 15 pounds AND learned how to dress for my body. My confidence is through the roof!"
                     </p>
-                    <p style="font-weight: bold; color: #ff1744;">- Maria, 38</p>
+                    <p style="font-weight: bold; color: var(--brand-pink-1);">- Maria, 38</p>
                 </div>
 
-                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
-                    <p style="font-size: 1.1rem; margin-bottom: 1rem; color: #666;">
+                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: var(--card-shadow);">
+                    <p style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--muted);">
                         "Other programs just gave me workouts. This transformed my entire life — inside and out."
                     </p>
-                    <p style="font-weight: bold; color: #ff1744;">- Jennifer, 45</p>
+                    <p style="font-weight: bold; color: var(--brand-pink-1);">- Jennifer, 45</p>
                 </div>
             </div>
 
-            <p style="text-align: center; margin-top: 2rem; font-size: 1.2rem; color: #ff1744;">
+            <p style="text-align: center; margin-top: 2rem; font-size: 1.2rem; color: var(--brand-pink-1);">
                 <strong>Join 100 women transforming their bodies, style, and confidence</strong>
             </p>
         </div>
@@ -551,12 +564,10 @@
     <section class="pricing" id="pricing">
         <h2>Your Goddess Transformation Starts Dec 1st 2025</h2>
 
-        <div style="background: #fff3e0; border-left: 4px solid #ff9800; padding: 1.5rem; margin-bottom: 2rem; border-radius: 8px; max-width: 600px; margin-left: auto; margin-right: auto; margin-bottom: 2rem;">
+        <div style="background: #fff3e0; border-left: 4px solid #ff9800; padding: 1.5rem; border-radius: 8px; max-width: 600px; margin: 0 auto 2rem;">
             <p style="margin: 0; font-size: 1.1rem; color: #333;">
-                <strong>December 1st 2025 Elite Cohort:</strong> We're only accepting 100 members
-                for personalized attention. <strong style="color: #ff1744;">
-                    57 ambitious women have already joined. Application closes when we reach capacity.
-                </strong>
+                <strong>December 1st 2025 Elite Cohort:</strong> We're only accepting 100 members for personalized attention.
+                <strong style="color: #ff1744;">57 ambitious women have already joined. Application closes when we reach capacity.</strong>
             </p>
         </div>
 
@@ -566,15 +577,15 @@
             <p style="margin-bottom: 2rem;">Cancel anytime. No long-term commitment required.</p>
 
             <ul class="pricing-features">
-                <li>Personalized meal plans & nutrition coaching provided by our nutritionist. </li>
+                <li>Personalized meal plans & nutrition coaching provided by our nutritionist</li>
                 <li>Image consulting & mini makeover ($3,000+ value)</li>
                 <li>Weekly goddess confidence challenges</li>
-                <li>Personal Workout app to log your workouts and interact with coaches</li>
-                <li>4 Weekly zoom coaching calls so you can learn and ask your questions</li>
+                <li>Personal workout app to log workouts & interact with coaches</li>
+                <li>4 weekly Zoom coaching calls for learning and Q&A</li>
                 <li>Private goddess community access</li>
                 <li>Direct coach support</li>
-                <li>We will assign you an accountability goddess to help you keep on track</li>
-                <li>Progress tracking. Celebrate your transformation: Watch yourself bloom</li>
+                <li>Accountability goddess assigned to keep you on track</li>
+                <li>Progress tracking — watch yourself bloom</li>
                 <li>Recipe database & meal prep guides</li>
             </ul>
         </div>
@@ -593,40 +604,6 @@
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section style="background: white; padding: 4rem 2rem;">
-        <div style="max-width: 800px; margin: 0 auto;">
-            <h2>Frequently Asked Questions</h2>
-            <div style="margin-bottom: 2rem;">
-                <h3 style="color: #ff1744; margin-bottom: 0.5rem;">How is this different from other fitness programs?</h3>
-                <p>Most programs only give you fitness + nutrition. We're the ONLY program that includes image consulting ($3,000+ value) and goddess confidence coaching. You get complete transformation — body, style, AND confidence.</p>
-            </div>
-
-            <div style="margin-bottom: 2rem;">
-                <h3 style="color: #ff1744; margin-bottom: 0.5rem;">What happens after I sign up??</h3>
-                <p>You will receive an onboarding email with the link to our private facebook group and a link to the fitness app. The program starts on Dec 1st 2025</p>
-            </div>
-
-            <div style="margin-bottom: 2rem;">
-                <h3 style="color: #ff1744; margin-bottom: 0.5rem;">What if I've tried everything and nothing works?</h3>
-                <p>That's because most programs miss half the equation. You can't feel like a goddess if you're fit but dress poorly, or dress well but feel weak. We transform ALL of you — that's why it works.</p>
-            </div>
-
-            <div>
-                <h3 style="color: #ff1744; margin-bottom: 0.5rem;">Can I really cancel anytime?</h3>
-                <p>Yes! No long-term contracts. If it's not for you, cancel anytime. But we're confident you'll love it — we have a 100% money-back guarantee. To cancel email contact@mygoddessproject.com, no questions asked.</p>
-            </div>
-
-            <div>
-                <h3 style="color: #ff1744; margin-bottom: 0.5rem;">What if I have further questions and I want to contact you?</h3>
-                <p>
-                    Email us at <a href="mailto:contact@mygoddessproject.com" style="color: #ff1744;">contact@mygoddessproject.com</a>
-                    or call 703-850.
-                </p>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer>
         <p>&copy; 2025 The Goddess Project. All Rights Reserved.</p>
@@ -638,38 +615,33 @@
     </footer>
 
     <script>
-        // Initialize Stripe with your publishable key
-        const stripe = Stripe('pk_test_51SPGMzJ8kJOaYN6gEa16NWuYvunF4zUujJ1k9NqpJZA9LwElD7kX1pKNPFZaSNKtoq3G6vYmmJNMx2uzLUxzrmKG000Ezt9YIh');
+    // Initialize Stripe with your publishable key (currently TEST mode)
+    const stripe = Stripe('pk_test_51SPGMzJ8kJOaYN6gEa16NWuYvunF4zUujJ1k9NqpJZA9LwElD7kX1pKNPFZaSNKtoq3G6vYmmJNMx2uzLUxzrmKG000Ezt9YIh');
 
-        // Smooth scroll
-        function scrollToPayment() {
-            document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
-        }
+    // Smooth scroll
+    function scrollToPayment() {
+      document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
+    }
 
-        // Handle checkout button click
-        document.getElementById('checkout-button').addEventListener('click', async function() {
-            const priceId = 'price_1SPGc6J8kJOaYN6gqO1UzIOE';
+    // Handle checkout button click
+    document.getElementById('checkout-button').addEventListener('click', async function() {
+      const priceId = 'price_1SPGc6J8kJOaYN6gqO1UzIOE'; // TEST price
 
-            try {
-                const { error } = await stripe.redirectToCheckout({
-                    lineItems: [{
-                        price: priceId,
-                        quantity: 1
-                    }],
-                    mode: 'subscription',
-                    successUrl: window.location.origin + '/success.html',
-                    cancelUrl: window.location.origin + '/index.html',
-                    customerEmail: '',
-                });
-
-                if (error) {
-                    alert('Payment failed: ' + error.message);
-                }
-            } catch (err) {
-                alert('An error occurred. Please try again.');
-                console.error(err);
-            }
+      try {
+        const { error } = await stripe.redirectToCheckout({
+          lineItems: [{ price: priceId, quantity: 1 }],
+          mode: 'subscription',
+          successUrl: window.location.origin + '/success.html',
+          cancelUrl: window.location.origin + '/index.html',
+          customerEmail: '', // optional prefill
         });
+
+        if (error) { alert('Payment failed: ' + error.message); }
+      } catch (err) {
+        alert('An error occurred. Please try again.');
+        console.error(err);
+      }
+    });
     </script>
 </body>
 </html>

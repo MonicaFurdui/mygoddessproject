@@ -1,742 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Goddess Project - Fitness, Nutrition, Image Consulting & Goddess Confidence for Women</title>
-
-    <!-- SEO -->
-    <meta name="description" content="My Goddess Project helps women transform body, style, and confidence with fitness, nutrition, image consulting, and mindset coaching.">
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <!-- Favicon -->
-    <link rel="icon" href="logo.png" type="image/png">
-
-    <!-- Stripe -->
-    <script src="https://js.stripe.com/v3/"></script>
-
-    <style>
-        /* ====== Brand Tokens ====== */
-        footer a {
-            color: #fff;
-            text-decoration: none;
-            opacity: .95;
-        }
-
-        footer a:hover {
-            opacity: 1;
-            text-decoration: underline;
-        }
-
-        :root {
-            --brand-pink-1: #ff1744;
-            --brand-pink-2: #ff5983;
-            --text: #2a2a2a;
-            --muted: #666;
-            --cream: #fff7f9;
-            --card-shadow: 0 8px 24px rgba(0,0,0,0.08);
-        }
-        /* FAQ section style */
-        .faq-section {
-            background-color: #ffe5eb; /* light pink like 'Real Women, Real Results' */
-            padding: 4rem 2rem;
-            border-radius: 12px;
-            text-align: center;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            color: var(--text);
-        }
-
-        body {
-            font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-            line-height: 1.6;
-            background: #fafafa;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            letter-spacing: .3px;
-        }
-
-        p {
-            line-height: 1.7;
-            max-width: 720px;
-            margin: 0 auto;
-            color: var(--text);
-        }
-
-        /* ====== Header (polished) ====== */
-        header {
-            background: linear-gradient(135deg, var(--brand-pink-1) 0%, var(--brand-pink-2) 100%);
-            color: white;
-            padding: 0.7rem 2rem; /* slightly reduced height for balance */
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 8px 18px rgba(255, 23, 68, 0.18);
-            backdrop-filter: saturate(110%);
-        }
-            /* soft divider line under header */
-            header::after {
-                content: "";
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                width: 100%;
-                height: 1px;
-                background: rgba(255,255,255,0.30);
-            }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            position: relative;
-            z-index: 1; /* sit above divider */
-        }
-
-        /* ====== Professional Logo Area ====== */
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo-img {
-            height: 60px; /* refined size for header */
-            width: auto;
-            display: block;
-            vertical-align: middle;
-            /* circular badge + subtle halo using brand gradient */
-            border-radius: 50%;
-            padding: 6px; /* ring thickness */
-            background: linear-gradient(135deg, var(--brand-pink-1) 0%, var(--brand-pink-2) 100%);
-            box-shadow: 0 0 10px rgba(255,255,255,0.25);
-            transition: transform .25s ease, box-shadow .25s ease;
-        }
-
-            .logo-img:hover {
-                transform: scale(1.05);
-                box-shadow: 0 0 18px rgba(255,255,255,0.35);
-            }
-
-        .cta-header {
-            background: linear-gradient(135deg, #ff4d7a, #ff7aa3);
-            color: #fff;
-            padding: .65rem 1.25rem;
-            border: none;
-            border-radius: 999px;
-            cursor: pointer;
-            font-weight: 600;
-            box-shadow: 0 6px 16px rgba(255, 89, 131, .35);
-            transition: transform .15s ease, box-shadow .15s ease;
-        }
-
-            .cta-header:hover {
-                transform: translateY(-1px);
-                box-shadow: 0 10px 24px rgba(255, 89, 131, .45);
-            }
-
-        /* ====== Hero ====== */
-        .hero {
-            background: linear-gradient(135deg, var(--brand-pink-1) 0%, var(--brand-pink-2) 100%);
-            color: white;
-            padding: 9rem 2rem 5rem;
-            text-align: center;
-            margin-top: 60px;
-        }
-
-            .hero h1 {
-                font-size: 3rem;
-                margin-bottom: 1rem;
-                font-weight: 700;
-                color: #fff;
-            }
-
-            .hero .tagline {
-                font-size: 1.5rem;
-                margin-bottom: 2rem;
-                font-weight: 300;
-                color: #fde7ef;
-            }
-
-        .hero-subtitle {
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            line-height: 1.8;
-            color: #fff;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #ff4d7a, #ff7aa3);
-            color: #fff;
-            border: none;
-            border-radius: 999px;
-            padding: 14px 28px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            box-shadow: 0 12px 28px rgba(255, 89, 131, .35);
-            transition: transform .2s ease, box-shadow .2s ease;
-        }
-
-            .cta-button:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 16px 36px rgba(255, 89, 131, .45);
-            }
-
-        /* ====== Sections ====== */
-        section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 2rem;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 2.25rem;
-            color: var(--brand-pink-1);
-        }
-
-        /* Features */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s, box-shadow .3s;
-        }
-
-            .feature-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-            }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            color: var(--brand-pink-1);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        /* Transformation */
-        .transformation {
-            background: linear-gradient(135deg, #fde1ea 0%, #fff2f7 100%);
-        }
-
-        .transformation-content {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .transformation-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #d81b60;
-            margin-bottom: .5rem;
-        }
-
-        .stat-label {
-            font-size: 1.05rem;
-            color: var(--muted);
-        }
-
-        /* Pricing */
-        .pricing {
-            background: #fff;
-        }
-
-        .pricing-card {
-            max-width: 600px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, var(--brand-pink-1) 0%, var(--brand-pink-2) 100%);
-            color: white;
-            padding: 3rem;
-            border-radius: 22px;
-            box-shadow: 0 16px 40px rgba(255, 23, 68, 0.22);
-            text-align: center;
-        }
-
-            .pricing-card h3 {
-                font-size: 2rem;
-                margin-bottom: 1rem;
-                color: #fff;
-            }
-
-        .price {
-            font-size: 4rem;
-            font-weight: 700;
-            margin: 1rem 0;
-        }
-
-        .price-period {
-            font-size: 1.5rem;
-            color: #f3e5f5;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin: 2rem 0;
-            text-align: left;
-        }
-
-            .pricing-features li {
-                padding: .8rem 0;
-                border-bottom: 1px solid rgba(255,255,255,0.2);
-                display: flex;
-                align-items: center;
-            }
-
-                .pricing-features li:before {
-                    content: "✓";
-                    margin-right: 1rem;
-                    font-weight: 700;
-                    color: #ffc0d3;
-                    font-size: 1.4rem;
-                }
-
-        /* Payment box */
-        .payment-section {
-            max-width: 500px;
-            margin: 3rem auto 0;
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        .stripe-button {
-            width: 100%;
-            padding: 1.2rem;
-            background: #ff1744;
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all .3s;
-            margin-bottom: 1rem;
-        }
-
-            .stripe-button:hover {
-                background: #d81b60;
-                transform: translateY(-2px);
-            }
-
-        .guarantee {
-            text-align: center;
-            margin-top: 2rem;
-            color: var(--muted);
-            font-size: .95rem;
-        }
-
-        /* Cream helper for alt sections */
-        .is-cream {
-            background: var(--cream);
-        }
-
-        /* Footer */
-        footer {
-            background: #222;
-            color: #fff;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        /* ====== Responsive ====== */
-        @media (max-width: 768px) {
-            header {
-                padding: 0.7rem 1rem;
-            }
-
-            .header-content {
-                flex-direction: column;
-                gap: .5rem;
-                text-align: center;
-            }
-
-            .logo-img {
-                height: 60px;
-                padding: 5px;
-            }
-            /* slightly smaller badge on mobile */
-            .cta-header {
-                padding: .6rem 1.2rem;
-                font-size: .9rem;
-            }
-
-            .hero {
-                padding: 6rem 1.5rem 3rem;
-            }
-
-                .hero h1 {
-                    font-size: 2rem;
-                    line-height: 1.2;
-                }
-
-                .hero .tagline {
-                    font-size: 1rem;
-                    line-height: 1.4;
-                }
-
-            .hero-subtitle {
-                font-size: 1rem;
-                padding: 0 1rem;
-            }
-
-            .cta-button {
-                font-size: 1rem;
-                padding: .9rem 2rem;
-                width: 100%;
-                max-width: 320px;
-            }
-
-            section {
-                padding: 80px 1.5rem;
-            }
-
-            h2 {
-                font-size: 1.9rem;
-                margin-bottom: 2rem;
-                padding: 0 1rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .feature-card {
-                padding: 1.5rem;
-            }
-
-                .feature-card h3 {
-                    font-size: 1.3rem;
-                }
-
-            .transformation {
-                padding: 80px 1.5rem;
-            }
-
-            .transformation-stats {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .pricing-card {
-                padding: 2rem 1.5rem;
-                margin: 0 1rem;
-            }
-
-            .price {
-                font-size: 3rem;
-            }
-
-            .price-period {
-                font-size: 1.2rem;
-            }
-
-            .pricing-features {
-                font-size: .95rem;
-            }
-
-            .payment-section {
-                margin: 2rem 1rem 0;
-                padding: 1.5rem;
-            }
-
-            footer {
-                padding: 2rem 1rem;
-                font-size: .9rem;
-            }
-        }
-    </style>
+  <title>My Goddess Project — Body, Style & Confidence</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="description" content="My Goddess Project — body, style, and confidence for ambitious women.">
+  <meta property="og:title" content="My Goddess Project — Body, Style & Confidence">
+  <meta property="og:description" content="4-in-1 coaching for ambitious women. First results in 6 weeks.">
+  <meta property="og:image" content="logo.png">
+  <meta property="og:type" content="website">
+  <style>
+  :root{
+    --pink1:#ff5f8f;
+    --pink2:#ff7aa2;
+    --rose-100:#fff5f8;
+    --rose-200:#ffe5eb;
+    --text:#2a2a2a;
+    --muted:#666;
+    --card-shadow:0 10px 28px rgba(0,0,0,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{scroll-behavior:smooth}
+  body{font-family:'DM Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;color:var(--text); background:#fafafa; line-height:1.65;}
+  h1,h2,h3{font-family:'Playfair Display', serif; letter-spacing:.4px}
+  a{color:var(--pink1);text-decoration:none}
+  a:hover{text-decoration:underline}
+  header{position:sticky; top:0; z-index:1000;background:linear-gradient(135deg,var(--pink1) 0%, var(--pink2) 100%);color:#fff; box-shadow:0 8px 18px rgba(255,95,143,.28);}
+  .header-inner{max-width:1200px;margin:0 auto;padding:.8rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .logo-img{height:40px;width:auto;border-radius:50%;padding:5px;background:linear-gradient(135deg,var(--pink1),var(--pink2));border:2px solid #fff;box-shadow:0 0 10px rgba(255,255,255,.2);transition:box-shadow .25s, transform .2s}
+  .logo-img:hover{box-shadow:0 0 14px rgba(255,255,255,.35); transform:scale(1.03)}
+  .cta-header{background:#fff;color:var(--pink1);border:none;border-radius:999px;padding:.6rem 1.1rem;font-weight:700;cursor:pointer}
+  .cta-header:hover{filter:brightness(.95)}
+  .hero{background:linear-gradient(135deg,var(--pink1),var(--pink2)); color:#fff; text-align:center; padding:7rem 1.25rem 4rem}
+  .hero h1{font-size:3rem;margin-bottom:.75rem}
+  .tagline{font-size:1.15rem;color:#fde7ef;margin-bottom:1.25rem;font-style:italic}
+  .hero-sub{max-width:760px;margin:0 auto 1.1rem}
+  .guarantees{display:flex;gap:14px;justify-content:center;margin-top:.6rem;color:#fde7ef;font-size:.95rem}
+  .cta-button{margin-top:1rem;background:linear-gradient(135deg,#ff7aa2,#ffb6c1);border:none;color:#fff;border-radius:999px;padding:.9rem 1.6rem;font-weight:800;box-shadow:0 14px 30px rgba(255,122,162,.35);cursor:pointer}
+  .cta-button:hover{transform:translateY(-2px)}
+  section{max-width:1200px;margin:0 auto;padding:90px 1.25rem}
+  h2{font-size:2.35rem;text-align:center;color:var(--pink1);margin-bottom:1.5rem}
+  .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+  .card{background:#fff;border-radius:18px;box-shadow:var(--card-shadow);padding:1.5rem;transition:transform .2s, box-shadow .2s}
+  .card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(0,0,0,.12)}
+  .card h3{color:var(--pink1);margin:.5rem 0  .4rem}
+  .icon{font-size:2rem}
+  .results{background:var(--rose-100);border-radius:14px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;margin-top:1.2rem}
+  .stat{background:#fff;border-radius:14px;box-shadow:var(--card-shadow);padding:1.6rem;text-align:center}
+  .stat .num{font-size:2.2rem;color:var(--pink1);font-weight:800}
+  .notice{background:var(--rose-200);border-left:4px solid #ff8fa3;border-radius:10px;max-width:640px;margin:0 auto 1.4rem;padding:1rem 1.25rem}
+  .notice p{margin:0;color:#cc2d55}
+  .program{background:#fff;border-radius:18px;box-shadow:var(--card-shadow);padding:1.5rem;max-width:900px;margin:0 auto}
+  .program-head{display:flex;align-items:center;gap:1rem;margin-bottom:.4rem}
+  .program-title{color:var(--pink1);font-size:1.6rem;margin:0}
+  .program-price{margin-left:auto;color:var(--pink1);font-weight:800;font-size:1.6rem}
+  .accordion{display:grid;gap:10px;margin:1rem 0 1.25rem}
+  .accordion details{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:12px;box-shadow:var(--card-shadow);overflow:hidden}
+  .accordion summary{list-style:none;cursor:pointer;padding:1rem 1.1rem;font-weight:700;color:var(--pink1);display:flex;align-items:center;gap:.6rem}
+  .accordion summary::-webkit-details-marker{display:none}
+  .accordion .panel{padding:0 1.1rem 1rem;color:var(--text)}
+  .faq-wrap{background:var(--rose-100);border-radius:14px}
+  .faq-item{max-width:900px;margin:0 auto 1.4rem}
+  .faq-item h3{color:var(--pink1);margin-bottom:.25rem}
+  .payment{max-width:520px;margin:1.6rem auto 0;background:#fff;border-radius:14px;box-shadow:var(--card-shadow);padding:1.25rem;text-align:center}
+  .stripe-button{width:100%;padding:1rem 1.1rem;background:var(--pink1);border:none;border-radius:10px;color:#fff;font-weight:800;cursor:pointer}
+  .stripe-button:hover{background:#e8477f}
+  footer{background:linear-gradient(135deg,var(--pink1),var(--pink2));color:#fff;text-align:center;padding:2rem 1rem;margin-top:0}
+  footer a{color:#fff;opacity:.95;text-decoration:none;font-weight:600;margin:0 12px}
+  footer a:hover{opacity:1;text-decoration:underline}
+  footer p{margin:.25rem 0}
+  .founder{max-width:1000px;margin:0 auto;padding:90px 1.25rem}
+  .founder-inner{display:flex;gap:2rem;align-items:center;flex-wrap:wrap}
+  .founder-img{width:220px;height:220px;object-fit:cover;border-radius:50%;box-shadow:0 6px 22px rgba(255,122,162,.45)}
+  [data-animate]{opacity:0;transform:translateY(18px);transition:all .8s ease}
+  [data-animate].visible{opacity:1;transform:none}
+  @media (max-width:768px){
+    .hero{padding:6rem 1rem 3rem}
+    .hero h1{font-size:2.1rem}
+    .cta-header{display:none}
+    .logo-img{height:36px}
+  }
+  </style>
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="header-content">
-            <a class="logo" href="/">
-                <img src="logo.png" alt="My Goddess Project" class="logo-img" loading="eager" decoding="async" />
-            </a>
-            <button class="cta-header" onclick="scrollToPayment()">Join Now</button>
-        </div>
-    </header>
+  <header>
+    <div class="header-inner">
+      <a href="index.html"><img src="logo.png" alt="My Goddess Project circular logo" class="logo-img" loading="eager"></a>
+      <button class="cta-header" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Join Now</button>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>MY GODDESS PROJECT</h1>
-        <div class="tagline">Fitness • Nutrition • Image Consulting • Goddess Confidence</div>
-        <p class="hero-subtitle">
-            Everything you need to feel sexy, powerful, and unstoppable.
-            Build the body that matches your ambition. This is your level up.
-        </p>
-        <button class="cta-button" onclick="scrollToPayment()">Claim Your Goddess Transformation ✨</button>
-    </section>
+  <section class="hero">
+    <h1 data-animate>MY GODDESS PROJECT</h1>
+    <div class="tagline" data-animate>Fitness • Nutrition • Image Consulting • Goddess Confidence</div>
+    <p class="hero-sub" data-animate>
+      Everything you need to feel sexy, powerful, and unstoppable. Build the body that matches your ambition. This is your level up.
+    </p>
+    <button class="cta-button" data-animate onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">
+      Claim Your Goddess Transformation ✨
+    </button>
+    <div class="guarantees" data-animate>
+      <span>🔒 Secure Stripe</span><span>•</span><span>Cancel anytime</span><span>•</span><span>Money‑back guarantee</span>
+    </div>
+  </section>
 
-    <!-- What's Included -->
-    <section id="whats-included">
-        <h2>What's Included in Your Transformation</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">💪</div>
-                <h3>Strength Training</h3>
-                <p>Build your goddess body: strong, feminine, powerful, toned, undeniably sexy. Access to your personal fitness app and weekly lives so you can ask your fitness questions.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🥗</div>
-                <h3>Personalized Nutrition</h3>
-                <p>Custom meal plans designed for women that work WITH your hormones. Eat more, weigh less, and fuel your goddess body. Delicious meals that make you glow.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">👗</div>
-                <h3>Image Consulting & Mini Makeover</h3>
-                <p>Learn what flatters your body and which colors make you glow so you dress like the goddess you are.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">💋</div>
-                <h3>Goddess Confidence Coaching</h3>
-                <p>Weekly challenges to amplify your magnetism, refine your personal brand, and make you unforgettable. Not about “feeling” confident — about BEING confident.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">👯</div>
-                <h3>Goddess Sisterhood</h3>
-                <p>Private community with daily support. You’ll be assigned an accountability goddess so you never feel alone on your journey.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📱</div>
-                <h3>Your Personal Fitness App</h3>
-                <p>Everything in one place — workouts, meal plans, progress tracking, and direct coach access. Train anywhere, anytime.</p>
-            </div>
-        </div>
-    </section>
+  <section id="whats-included">
+    <h2 data-animate>What's Included in Your Transformation</h2>
+    <div class="features-grid">
+      <div class="card" data-animate><div class="icon">💪</div><h3>Strength Training</h3><p>Build a strong, feminine, powerful body with period‑smart training plans.</p></div>
+      <div class="card" data-animate><div class="icon">🥗</div><h3>Personalized Nutrition</h3><p>Hormone‑friendly meal plans you’ll actually enjoy — glow from the inside out.</p></div>
+      <div class="card" data-animate><div class="icon">👗</div><h3>Image Consulting & Mini Makeover</h3><p>Color analysis & body‑flattery styling so you dress like the goddess you are.</p></div>
+      <div class="card" data-animate><div class="icon">💋</div><h3>Confidence Coaching</h3><p>Weekly challenges to embody calm power — not just feel confident, be confident.</p></div>
+      <div class="card" data-animate><div class="icon">👯</div><h3>Goddess Sisterhood</h3><p>Daily support & an accountability goddess so you never go it alone.</p></div>
+      <div class="card" data-animate><div class="icon">📱</div><h3>Your Fitness App</h3><p>Programs, logs, progress, and coach messaging — all in one place.</p></div>
+    </div>
+  </section>
 
-    <!-- Transformation Stats -->
-    <section class="transformation">
-        <div class="transformation-content">
-            <h2>Real Women, Real Results</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
-                Join 100+ women who are claiming their strength, confidence, and sexy. This isn't just fitness — it's your goddess awakening.
-            </p>
+  <section class="results">
+    <h2 data-animate>Real Women, Real Results</h2>
+    <p style="text-align:center;max-width:760px;margin:0 auto" data-animate>
+      Join 100+ women who are claiming their strength, confidence, and sexy. This isn't just fitness — it's your goddess awakening.
+    </p>
+    <div class="stats">
+      <div class="stat" data-animate><div class="num">4‑in‑1</div><div>Only Program With Fitness + Nutrition + Image + Confidence</div></div>
+      <div class="stat" data-animate><div class="num">100</div><div>Women Transforming Dec 1st 2025 (Limited Spots)</div></div>
+    </div>
+  </section>
 
-            <div class="transformation-stats">
-                <div class="stat">
-                    <div class="stat-number">4-in-1</div>
-                    <div class="stat-label">Only Program With Fitness + Nutrition + Image + Confidence</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">100</div>
-                    <div class="stat-label">Women Transforming Dec 1st 2025 (Limited Spots)</div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <section id="pricing">
+    <h2 data-animate>Your Goddess Transformation Starts Dec 1st 2025</h2>
+    <div class="notice" data-animate>
+      <p><strong>December 1st 2025 Elite Cohort:</strong> We're only accepting 100 members for personalized attention. <strong>57 ambitious women have already joined. Application closes when we reach capacity.</strong></p>
+    </div>
 
-    <!-- Testimonials -->
-    <section class="is-cream">
-        <div style="max-width: 1000px; margin: 0 auto;">
-            <h2>What Goddesses Are Saying</h2>
+    <div class="program" data-animate>
+      <div class="program-head">
+        <h3 class="program-title">The Complete Goddess Program</h3>
+        <div class="program-price">$250<span style="font-weight:600">/month</span></div>
+      </div>
+      <p style="color:var(--muted);margin-bottom:1rem">Cancel anytime. No long‑term commitment required.</p>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: var(--card-shadow);">
-                    <p style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--muted);">
-                        "Finally, a program that doesn't just focus on weight loss. The image consulting changed how I see myself!"
-                    </p>
-                    <p style="font-weight: bold; color: var(--brand-pink-1);">- Sarah, 42</p>
-                </div>
+      <div class="accordion" id="program-accordion">
+        <details><summary>✓ Personalized meal plans & nutrition coaching<span style="margin-left:auto">⌄</span></summary><div class="panel">Tailored to your hormones, preferences, and goals — eat more, weigh less, glow.</div></details>
+        <details><summary>✓ Image consulting & mini makeover ($3,000+ value)<span style="margin-left:auto">⌄</span></summary><div class="panel">Color analysis, body‑type styling, & on‑brand outfits.</div></details>
+        <details><summary>✓ Weekly goddess confidence challenges<span style="margin-left:auto">⌄</span></summary><div class="panel">From “trying to feel” to actually <b>being</b> confident.</div></details>
+        <details><summary>✓ Personal workout app & coach access<span style="margin-left:auto">⌄</span></summary><div class="panel">Your programs, logs, and messaging in one place.</div></details>
+        <details><summary>✓ 4 weekly Zoom coaching calls<span style="margin-left:auto">⌄</span></summary><div class="panel">High‑touch guidance and Q&A.</div></details>
+        <details><summary>✓ Private goddess community<span style="margin-left:auto">⌄</span></summary><div class="panel">Daily accountability with women leveling up with you.</div></details>
+        <details><summary>✓ Accountability goddess<span style="margin-left:auto">⌄</span></summary><div class="panel">A dedicated partner to keep you on track.</div></details>
+        <details><summary>✓ Progress tracking — watch yourself bloom<span style="margin-left:auto">⌄</span></summary><div class="panel">Photos, measurements, & milestone wins.</div></details>
+        <details><summary>✓ Recipe database & meal prep guides<span style="margin-left:auto">⌄</span></summary><div class="panel">Delicious, practical recipes that fit your plan.</div></details>
+      </div>
 
-                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: var(--card-shadow);">
-                    <p style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--muted);">
-                        "I lost 15 pounds AND learned how to dress for my body. My confidence is through the roof!"
-                    </p>
-                    <p style="font-weight: bold; color: var(--brand-pink-1);">- Maria, 38</p>
-                </div>
+      <div class="payment">
+        <h3 style="color:var(--pink1);margin-bottom:.7rem">Secure Checkout with Stripe</h3>
+        <button id="checkout-button" class="stripe-button">💳 Subscribe Now - $250/month</button>
+        <p style="color:var(--muted);margin-top:.6rem;font-size:.95rem">🔒 Secure Payment • Cancel anytime • 100% Money‑Back Guarantee</p>
+      </div>
+    </div>
+  </section>
 
-                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: var(--card-shadow);">
-                    <p style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--muted);">
-                        "Other programs just gave me workouts. This transformed my entire life — inside and out."
-                    </p>
-                    <p style="font-weight: bold; color: var(--brand-pink-1);">- Jennifer, 45</p>
-                </div>
-            </div>
+  <section class="faq-wrap" id="faq">
+    <h2 data-animate>Frequently Asked Questions</h2>
+    <div class="faq-item" data-animate>
+      <h3>How long is the program?</h3>
+      <p>The My Goddess Project runs as a monthly membership. Most women start seeing physical and mindset transformations within 6 weeks.</p>
+    </div>
+    <div class="faq-item" data-animate>
+      <h3>Do I need gym access?</h3>
+      <p>No — all workouts can be done at home or in the gym. You’ll have both options inside your app.</p>
+    </div>
+    <div class="faq-item" data-animate>
+      <h3>Is this suitable for beginners?</h3>
+      <p>Absolutely. Everything is tailored to your current fitness level, goals, and preferences.</p>
+    </div>
+    <div class="faq-item" data-animate>
+      <h3>Can I cancel anytime?</h3>
+      <p>Yes. You can cancel your subscription anytime directly from your member portal — no questions asked.</p>
+    </div>
+    <div class="faq-item" data-animate>
+      <h3>When does the next cohort start?</h3>
+      <p>The next cohort begins <strong>December 1st, 2025</strong>. Spots are limited to ensure personalized coaching.</p>
+    </div>
+  </section>
 
-            <p style="text-align: center; margin-top: 2rem; font-size: 1.2rem; color: var(--brand-pink-1);">
-                <strong>Join 100 women transforming their bodies, style, and confidence</strong>
-            </p>
-        </div>
-    </section>
+  <footer>
+    <p>© 2025 The Goddess Project. All Rights Reserved.</p>
+    <div style="margin-top:.5rem">
+      <a href="terms.html">Terms</a><span style="color:rgba(255,255,255,.6)"> | </span>
+      <a href="privacy.html">Privacy</a><span style="color:rgba(255,255,255,.6)"> | </span>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
 
-    <!-- Pricing & Payment -->
-    <section class="pricing" id="pricing">
-        <h2>Your Goddess Transformation Starts Dec 1st 2025</h2>
+  <script>
+    // Animate on scroll
+    const onScroll = () => {
+      document.querySelectorAll('[data-animate]').forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight - 80) el.classList.add('visible');
+      });
+    };
+    onScroll(); window.addEventListener('scroll', onScroll);
 
-        <div style="background: #ffe5eb; border-left: 4px solid #ff8fa3; padding: 1.5rem; border-radius: 8px; max-width: 600px; margin: 0 auto 2rem;">
-            <p style="margin: 0; font-size: 1.1rem; color: #ff6f91;">
-                <strong>December 1st 2025 Elite Cohort:</strong> We're only accepting 100 members
-                for personalized attention. <strong style="color: #ff3f6c;">
-                    57 ambitious women have already joined. Application closes when we reach capacity.
-                </strong>
-            </p>
-        </div>
-        <div class="pricing-card">
-            <h3>The Complete Goddess Program</h3>
-            <div class="price">$250<span class="price-period">/month</span></div>
-            <p style="margin-bottom: 2rem;">Cancel anytime. No long-term commitment required.</p>
-
-            <ul class="pricing-features">
-                <li>Personalized meal plans & nutrition coaching provided by our nutritionist</li>
-                <li>Image consulting & mini makeover ($3,000+ value)</li>
-                <li>Weekly goddess confidence challenges</li>
-                <li>Personal workout app to log workouts & interact with coaches</li>
-                <li>4 weekly Zoom coaching calls for learning and Q&A</li>
-                <li>Private goddess community access</li>
-                <li>Direct coach support</li>
-                <li>Accountability goddess assigned to keep you on track</li>
-                <li>Progress tracking — watch yourself bloom</li>
-                <li>Recipe database & meal prep guides</li>
-            </ul>
-        </div>
-
-        <!-- Payment Section -->
-        <div class="payment-section">
-            <h3 style="color: #ff1744; margin-bottom: 1.5rem;">Secure Checkout with Stripe</h3>
-            <button id="checkout-button" class="stripe-button">
-                💳 Subscribe Now - $250/month
-            </button>
-            <div class="guarantee">
-                <p><strong>🔒 Secure Payment with Stripe</strong></p>
-                <p>Cancel anytime • 100% Money-Back Guarantee</p>
-                <p style="margin-top: 0.5rem;">Your transformation starts Dec 1st 2025.</p>
-            </div>
-        </div>
-    </section>
-    <!-- FAQ Section -->
-    <section class="faq-section" id="faq">
-        <div style="max-width: 900px; margin: 0 auto;">
-            <h2>Frequently Asked Questions</h2>
-
-            <div style="margin-bottom: 2rem;">
-                <h3 style="color: var(--brand-pink-1);">How long is the program?</h3>
-                <p>The My Goddess Project runs as a monthly membership. Most women start seeing physical and mindset transformations within 6 weeks.</p>
-            </div>
-
-            <div style="margin-bottom: 2rem;">
-                <h3 style="color: var(--brand-pink-1);">Do I need gym access?</h3>
-                <p>No — all workouts can be done at home or in the gym. You’ll have both options inside your app.</p>
-            </div>
-
-            <div style="margin-bottom: 2rem;">
-                <h3 style="color: var(--brand-pink-1);">Is this suitable for beginners?</h3>
-                <p>Absolutely. Everything is tailored to your current fitness level, goals, and preferences.</p>
-            </div>
-
-            <div style="margin-bottom: 2rem;">
-                <h3 style="color: var(--brand-pink-1);">What’s included in the subscription?</h3>
-                <p>Access to all 4 pillars: fitness, nutrition, image consulting, and goddess confidence coaching — plus the private community and personal app.</p>
-            </div>
-
-            <div style="margin-bottom: 2rem;">
-                <h3 style="color: var(--brand-pink-1);">Can I cancel anytime?</h3>
-                <p>Yes. You can cancel your subscription anytime directly from your member portal — no questions asked.</p>
-            </div>
-            <div style="margin-bottom: 2rem;">
-                <h3 style="color: var(--brand-pink-1);">What happens after I sign up?</h3>
-                <p>
-                    You will receive an onboarding email with the link to our private
-                    facebook group and a link to the finess app, as well as next steps to follow.
-                </p>
-            </div>
-            <div style="margin-bottom: 2rem;">
-                <h3 style="color: var(--brand-pink-1);">When does the next cohort start?</h3>
-                <p>The next cohort begins <strong>December 1st, 2025</strong>. Spots are limited to ensure personalized coaching.</p>
-            </div>
-            <div style="margin-bottom: 2rem;">
-                <h3 style="color: var(--brand-pink-1);">What if I have further questions?</h3>
-                <p>Email us at contact@mygoddnessproject.com or call at 703-850-4047</p>
-            </div>
-        </div>
-    </section>
-    <!-- Footer -->
-    <footer style="background: linear-gradient(135deg, var(--brand-pink-1) 0%, var(--brand-pink-2) 100%); color:#fff; text-align:center; padding:2rem 0; margin-top:0;">
-        <p style="margin: 0 auto; font-size: 1rem; font-weight: 500; text-align: center; display: block;">
-  © 2025 The Goddess Project. All Rights Reserved.
-        </p>
-        <div style="margin-top: 0.75rem;">
-            <a href="terms.html" style="color: #fff; margin: 0 12px; text-decoration: none; font-weight: 500;">Terms</a>
-            <span style="color: rgba(255,255,255,0.5)">|</span>
-            <a href="privacy.html" style="color: #fff; margin: 0 12px; text-decoration: none; font-weight: 500;">Privacy</a>
-            <span style="color: rgba(255,255,255,0.5)">|</span>
-            <a href="contact.html" style="color: #fff; margin: 0 12px; text-decoration: none; font-weight: 500;">Contact</a>
-            <a href="aboutus.html" style="color: #fff; margin: 0 12px; text-decoration: none; font-weight: 500;">About Us</a>
-        </div>
-    </footer>
-
-    <script>
-    // Initialize Stripe (TEST mode)
-    const stripe = Stripe('pk_test_51SPGMzJ8kJOaYN6gEa16NWuYvunF4zUujJ1k9NqpJZA9LwElD7kX1pKNPFZaSNKtoq3G6vYmmJNMx2uzLUxzrmKG000Ezt9YIh');
-
-    // Smooth scroll
-    function scrollToPayment() {
-      document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // Checkout
-    document.getElementById('checkout-button').addEventListener('click', async function() {
-      const priceId = 'price_1SPGc6J8kJOaYN6gqO1UzIOE'; // TEST price
+    // Stripe placeholder (replace with your real test key & price)
+    const stripe = Stripe('pk_test_12345_replace_with_your_test_key');
+    document.getElementById('checkout-button').addEventListener('click', async function(){
+      const priceId = 'price_replace_with_your_test_price';
       try {
-        const { error } = await stripe.redirectToCheckout({
+        const result = await stripe.redirectToCheckout({
           lineItems: [{ price: priceId, quantity: 1 }],
           mode: 'subscription',
           successUrl: window.location.origin + '/success.html',
-          cancelUrl: window.location.origin + '/index.html',
-          customerEmail: '',
+          cancelUrl: window.location.origin + '/index.html'
         });
-        if (error) alert('Payment failed: ' + error.message);
-      } catch (err) {
-        alert('An error occurred. Please try again.');
-        console.error(err);
-      }
+        if (result.error) alert(result.error.message);
+      } catch(e){ alert('Checkout error'); console.error(e); }
     });
-    </script>
+  </script>
 </body>
 </html>

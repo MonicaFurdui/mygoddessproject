@@ -1,42 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Terms | My Goddess Project</title>
+  <title>About — My Goddess Project</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #fff5f8;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
-    header {
-      background: linear-gradient(135deg, #ff5f8f 0%, #ff7aa2 100%);
-      color: #fff;
-      padding: 2rem;
-      text-align: center;
-      font-size: 1.8rem;
-      font-weight: 700;
-    }
-    section {
-      max-width: 800px;
-      margin: 3rem auto;
-      padding: 1.5rem;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
+  :root{--pink1:#ff5f8f;--pink2:#ff7aa2;--card-shadow:0 10px 28px rgba(0,0,0,.08)}
+  body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:#fafafa;color:#2a2a2a}
+  h1,h2,h3{font-family:'Playfair Display',serif}
+  header{background:linear-gradient(135deg,var(--pink1),var(--pink2));color:#fff}
+  .header-inner{max-width:1200px;margin:0 auto;padding:.8rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
+  .logo-img{height:40px;border-radius:50%;padding:5px;background:linear-gradient(135deg,var(--pink1),var(--pink2));border:2px solid #fff}
+  .cta-header{background:#fff;color:var(--pink1);border:none;border-radius:999px;padding:.6rem 1.1rem;font-weight:700;text-decoration:none}
+  .founder{max-width:1000px;margin:0 auto;padding:90px 1.25rem}
+  .founder-inner{display:flex;gap:2rem;align-items:center;flex-wrap:wrap}
+  .founder-img{width:220px;height:220px;object-fit:cover;border-radius:50%;box-shadow:0 6px 22px rgba(255,122,162,.45)}
+  footer{background:linear-gradient(135deg,var(--pink1),var(--pink2));color:#fff;text-align:center;padding:2rem 1rem}
+  footer a{color:#fff;margin:0 12px;text-decoration:none;font-weight:600}
   </style>
 </head>
 <body>
-  <header>About us</header>
-<section>
-  <h2></h2>
-  <p>Monica Furdui, based in beautiful Vermont, USA, is the visionary behind My Goddess Project — a movement helping women connect with their strength, elegance, and inner confidence.</p>
-  <p>With a background in artificial intelligence and human transformation, Monica combines science, mindset, and style to create a holistic system for lasting change.</p>
-  <p>What began as her own 6-week transformation journey has evolved into a program that empowers women worldwide to embody their most radiant, grounded, and feminine selves</p>
-</section>
+  <header>
+    <div class="header-inner">
+      <a href="index.html"><img src="logo.png" alt="My Goddess Project logo" class="logo-img"></a>
+      <a class="cta-header" href="index.html">Back to Home</a>
+    </div>
+  </header>
+
+  <section class="founder">
+    <div class="founder-inner">
+      <img src="logo2.png" alt="Monica Furdui" class="founder-img">
+      <div>
+        <h2>About the Founder</h2>
+        <p><strong>Monica Furdui</strong>, based in <strong>Vermont, USA</strong>, is the visionary behind <em>My Goddess Project</em> — a movement helping women reconnect with their strength, elegance, and inner confidence. With a background in artificial intelligence and human transformation, Monica blends science, mindset, and style into a holistic system for lasting change.</p>
+        <p>What began as her own 6‑week transformation has grown into a program empowering women worldwide to embody their most radiant, grounded, and feminine selves — from the heart of Vermont to wherever you are.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 The Goddess Project. All Rights Reserved.</p>
+    <div style="margin-top:.5rem">
+      <a href="terms.html">Terms</a><span style="color:rgba(255,255,255,.6)"> | </span>
+      <a href="privacy.html">Privacy</a><span style="color:rgba(255,255,255,.6)"> | </span>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
 </body>
 </html>

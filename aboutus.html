@@ -1,51 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>About — My Goddess Project</title>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
-  :root{--pink1:#ff5f8f;--pink2:#ff7aa2;--card-shadow:0 10px 28px rgba(0,0,0,.08)}
-  body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:#fafafa;color:#2a2a2a}
-  h1,h2,h3{font-family:'Playfair Display',serif}
-  header{background:linear-gradient(135deg,var(--pink1),var(--pink2));color:#fff}
-  .header-inner{max-width:1200px;margin:0 auto;padding:.8rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
-  .logo-img{height:40px;border-radius:50%;padding:5px;background:linear-gradient(135deg,var(--pink1),var(--pink2));border:2px solid #fff}
-  .cta-header{background:#fff;color:var(--pink1);border:none;border-radius:999px;padding:.6rem 1.1rem;font-weight:700;text-decoration:none}
-  .founder{max-width:1000px;margin:0 auto;padding:90px 1.25rem}
-  .founder-inner{display:flex;gap:2rem;align-items:center;flex-wrap:wrap}
-  .founder-img{width:220px;height:220px;object-fit:cover;border-radius:50%;box-shadow:0 6px 22px rgba(255,122,162,.45)}
-  footer{background:linear-gradient(135deg,var(--pink1),var(--pink2));color:#fff;text-align:center;padding:2rem 1rem}
-  footer a{color:#fff;margin:0 12px;text-decoration:none;font-weight:600}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About the Founder | My Goddess Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            color: #333;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(90deg, #f48fb1, #ec407a);
+            padding: 1rem 0;
+            text-align: center;
+            color: white;
+        }
+
+            header img {
+                height: 60px;
+            }
+
+        main {
+            padding: 4rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h2 {
+            color: #d63384;
+            font-size: 1.8rem;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            line-height: 1.7;
+            font-size: 1rem;
+            color: #444;
+        }
+
+        .founder-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 6px 22px rgba(255, 122, 162, 0.45);
+            margin-bottom: 1.5rem;
+            border: 4px solid #fff;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 2rem;
+            background-color: #ec407a;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+            .back-button:hover {
+                background-color: #d63384;
+                transform: translateY(-2px);
+            }
+
+        footer {
+            background: linear-gradient(90deg, #f48fb1, #ec407a);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+            footer a {
+                color: white;
+                margin: 0 10px;
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+                footer a:hover {
+                    text-decoration: underline;
+                }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="header-inner">
-      <a href="index.html"><img src="logo.png" alt="My Goddess Project logo" class="logo-img"></a>
-      <a class="cta-header" href="index.html">Back to Home</a>
-    </div>
-  </header>
 
-  <section class="founder">
-    <div class="founder-inner">
-      <img src="founder.jpg" alt="Monica Furdui" class="founder-img">
-      <div>
+    <header>
+        <img src="logo.png" alt="My Goddess Project Logo">
+    </header>
+
+    <main>
+        <picture>
+            <source srcset="founder.webp" type="image/webp">
+            <img src="founder.jpeg" alt="Monica Furdui, Founder of My Goddess Project" class="founder-img" loading="eager" decoding="async">
+        </picture>
+
         <h2>About the Founder</h2>
-        <p><strong>Monica Furdui</strong>, based in <strong>Vermont, USA</strong>, is the visionary behind <em>My Goddess Project</em> — a movement helping women reconnect with their strength, elegance, and inner confidence. With a background in artificial intelligence and human transformation, Monica blends science, mindset, and style into a holistic system for lasting change.</p>
-        <p>What began as her own 6‑week transformation has grown into a program empowering women worldwide to embody their most radiant, grounded, and feminine selves — from the heart of Vermont to wherever you are.</p>
-      </div>
-    </div>
-  </section>
 
-  <footer>
-    <p>© 2025 The Goddess Project. All Rights Reserved.</p>
-    <div style="margin-top:.5rem">
-      <a href="terms.html">Terms</a><span style="color:rgba(255,255,255,.6)"> | </span>
-      <a href="privacy.html">Privacy</a><span style="color:rgba(255,255,255,.6)"> | </span>
-      <a href="contact.html">Contact</a>
-    </div>
-  </footer>
+        <p><strong>Monica Furdui</strong>, based in <strong>Vermont, USA</strong>, is the visionary behind <em>My Goddess Project</em> — a movement helping women reconnect with their strength, elegance, and inner confidence. With a background in artificial intelligence and human transformation, Monica blends science, mindset, and style into a holistic system for lasting change.</p>
+
+        <p>What began as her own 6-week transformation has grown into a global program empowering women to embody their most radiant, grounded, and feminine selves — from the heart of Vermont to wherever you are.</p>
+
+        <a href="index.html" class="back-button">Back to Home</a>
+    </main>
+
+    <footer>
+        <p>© 2025 The Goddess Project. All Rights Reserved.</p>
+        <p>
+            <a href="terms.html">Terms</a> |
+            <a href="privacy.html">Privacy</a> |
+            <a href="contact.html">Contact</a>
+        </p>
+    </footer>
+
 </body>
 </html>

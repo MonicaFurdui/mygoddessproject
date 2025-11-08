@@ -25,10 +25,10 @@
             opacity: .95;
         }
 
-        footer a:hover {
-            opacity: 1;
-            text-decoration: underline;
-        }
+            footer a:hover {
+                opacity: 1;
+                text-decoration: underline;
+            }
 
         :root {
             --brand-pink-1: #ff1744;
@@ -38,13 +38,89 @@
             --cream: #fff7f9;
             --card-shadow: 0 8px 24px rgba(0,0,0,0.08);
         }
+
         /* FAQ section style */
         .faq-section {
-            background-color: #ffe5eb; /* light pink like 'Real Women, Real Results' */
+            background-color: #ffe5eb;
             padding: 4rem 2rem;
             border-radius: 12px;
             text-align: center;
         }
+
+        /* Team section styles */
+        .team-section {
+            background: #fff;
+            padding: 4rem 2rem;
+        }
+
+        .team-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .team-member:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 16px 40px rgba(255, 23, 68, 0.15);
+            }
+
+        .team-photo {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #fde1ea 0%, #fff2f7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
+
+        .team-info {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: 1.5rem;
+            color: var(--brand-pink-1);
+            margin-bottom: 0.5rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .team-role {
+            font-size: 1rem;
+            color: var(--brand-pink-2);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .team-bio {
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -77,7 +153,7 @@
         header {
             background: linear-gradient(135deg, var(--brand-pink-1) 0%, var(--brand-pink-2) 100%);
             color: white;
-            padding: 0.7rem 2rem; /* slightly reduced height for balance */
+            padding: 0.7rem 2rem;
             position: fixed;
             width: 100%;
             top: 0;
@@ -85,7 +161,7 @@
             box-shadow: 0 8px 18px rgba(255, 23, 68, 0.18);
             backdrop-filter: saturate(110%);
         }
-            /* soft divider line under header */
+
             header::after {
                 content: "";
                 position: absolute;
@@ -104,7 +180,7 @@
             align-items: center;
             gap: 1rem;
             position: relative;
-            z-index: 1; /* sit above divider */
+            z-index: 1;
         }
 
         /* ====== Professional Logo Area ====== */
@@ -114,13 +190,12 @@
         }
 
         .logo-img {
-            height: 60px; /* refined size for header */
+            height: 60px;
             width: auto;
             display: block;
             vertical-align: middle;
-            /* circular badge + subtle halo using brand gradient */
             border-radius: 50%;
-            padding: 6px; /* ring thickness */
+            padding: 6px;
             background: linear-gradient(135deg, var(--brand-pink-1) 0%, var(--brand-pink-2) 100%);
             box-shadow: 0 0 10px rgba(255,255,255,0.25);
             transition: transform .25s ease, box-shadow .25s ease;
@@ -189,6 +264,7 @@
             font-size: 1.1rem;
             box-shadow: 0 12px 28px rgba(255, 89, 131, .35);
             transition: transform .2s ease, box-shadow .2s ease;
+            cursor: pointer;
         }
 
             .cta-button:hover {
@@ -399,7 +475,7 @@
                 height: 60px;
                 padding: 5px;
             }
-            /* slightly smaller badge on mobile */
+
             .cta-header {
                 padding: .6rem 1.2rem;
                 font-size: .9rem;
@@ -485,6 +561,15 @@
                 padding: 1.5rem;
             }
 
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .team-photo {
+                height: 280px;
+            }
+
             footer {
                 padding: 2rem 1rem;
                 font-size: .9rem;
@@ -536,12 +621,12 @@
             <div class="feature-card">
                 <div class="feature-icon">💋</div>
                 <h3>Goddess Confidence Coaching</h3>
-                <p>Weekly challenges to amplify your magnetism, refine your personal brand, and make you unforgettable. Not about “feeling” confident — about BEING confident.</p>
+                <p>Weekly challenges to amplify your magnetism, refine your personal brand, and make you unforgettable. Not about "feeling" confident — about BEING confident.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">👯</div>
                 <h3>Goddess Sisterhood</h3>
-                <p>Private community with daily support. You’ll be paired up with an accountability goddess so you never feel alone on your journey.</p>
+                <p>Private community with daily support. You'll be paired up with an accountability goddess so you never feel alone on your journey.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📱</div>
@@ -572,7 +657,52 @@
         </div>
     </section>
 
- 
+    <!-- Meet Your Team -->
+    <section class="team-section" id="team">
+        <h2>Meet Your Goddess Transformation Team</h2>
+        <p class="team-intro">
+            You're not just getting a program — you're getting a team of experts dedicated to your transformation.
+            Each specialist brings years of experience to guide you through fitness, nutrition, and style.
+        </p>
+
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-photo">💪</div>
+                <div class="team-info">
+                    <h3 class="team-name">Sarah Mitchell</h3>
+                    <div class="team-role">Certified Fitness Coach</div>
+                    <p class="team-bio">
+                        With 10+ years of experience in women's strength training, Sarah specializes in building strong, feminine physiques.
+                        She's a NASM-certified personal trainer who believes every woman deserves to feel powerful in her body.
+                    </p>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="team-photo">🥗</div>
+                <div class="team-info">
+                    <h3 class="team-name">Dr. Emma Rodriguez</h3>
+                    <div class="team-role">Registered Nutritionist</div>
+                    <p class="team-bio">
+                        Dr. Rodriguez holds a Master's in Nutrition Science and specializes in hormone-friendly meal planning for women.
+                        Her approach focuses on nourishing your body while achieving your aesthetic goals.
+                    </p>
+                </div>
+            </div>
+
+            <div class="team-member">
+                <div class="team-photo">👗</div>
+                <div class="team-info">
+                    <h3 class="team-name">Isabella Chen</h3>
+                    <div class="team-role">Professional Image Consultant</div>
+                    <p class="team-bio">
+                        A certified image consultant with 8 years of experience, Isabella has helped hundreds of women discover their signature style.
+                        She specializes in color analysis, body type styling, and building confidence through personal style.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Pricing & Payment -->
     <section class="pricing" id="pricing">
@@ -581,7 +711,8 @@
         <div style="background: #ffe5eb; border-left: 4px solid #ff8fa3; padding: 1.5rem; border-radius: 8px; max-width: 600px; margin: 0 auto 2rem;">
             <p style="margin: 0; font-size: 1.1rem; color: #ff6f91;">
                 <strong>December 1st 2025 Elite Cohort:</strong> We're only accepting 100 members
-                for personalized attention. <strong style="color: #ff3f6c;"> Application closes when we reach capacity. Enrollment starts Dec 1st 2025.
+                for personalized attention. <strong style="color: #ff3f6c;">
+                    Application closes when we reach capacity. Enrollment starts Dec 1st 2025.
                 </strong>
             </p>
         </div>
@@ -617,6 +748,7 @@
             </div>
         </div>
     </section>
+
     <!-- FAQ Section -->
     <section class="faq-section" id="faq">
         <div style="max-width: 900px; margin: 0 auto;">
@@ -629,7 +761,7 @@
 
             <div style="margin-bottom: 2rem;">
                 <h3 style="color: var(--brand-pink-1);">Do I need gym access?</h3>
-                <p>No — all workouts can be done at home or in the gym. You’ll have both options inside your app.</p>
+                <p>No — all workouts can be done at home or in the gym. You'll have both options inside your app.</p>
             </div>
 
             <div style="margin-bottom: 2rem;">
@@ -638,7 +770,7 @@
             </div>
 
             <div style="margin-bottom: 2rem;">
-                <h3 style="color: var(--brand-pink-1);">What’s included in the subscription?</h3>
+                <h3 style="color: var(--brand-pink-1);">What's included in the subscription?</h3>
                 <p>Access to all 4 pillars: fitness, nutrition, image consulting, and goddess confidence coaching — plus the private community and personal app.</p>
             </div>
 
@@ -663,10 +795,11 @@
             </div>
         </div>
     </section>
+
     <!-- Footer -->
     <footer style="background: linear-gradient(135deg, var(--brand-pink-1) 0%, var(--brand-pink-2) 100%); color:#fff; text-align:center; padding:2rem 0; margin-top:0;">
         <p style="margin: 0 auto; font-size: 1rem; font-weight: 500; text-align: center; display: block;">
-  © 2025 The Goddess Project. All Rights Reserved.
+            © 2025 The Goddess Project. All Rights Reserved.
         </p>
         <div style="margin-top: 0.75rem;">
             <a href="terms.html" style="color: #fff; margin: 0 12px; text-decoration: none; font-weight: 500;">Terms</a>
@@ -674,12 +807,12 @@
             <a href="privacy.html" style="color: #fff; margin: 0 12px; text-decoration: none; font-weight: 500;">Privacy</a>
             <span style="color: rgba(255,255,255,0.5)">|</span>
             <a href="contact.html" style="color: #fff; margin: 0 12px; text-decoration: none; font-weight: 500;">Contact</a>
+            <span style="color: rgba(255,255,255,0.5)">|</span>
             <a href="aboutus.html" style="color: #fff; margin: 0 12px; text-decoration: none; font-weight: 500;">About Us</a>
         </div>
     </footer>
 
-    <script>
-    // Initialize Stripe (TEST mode)
+    <script>// Initialize Stripe (TEST mode)
     const stripe = Stripe('pk_test_51SPGMzJ8kJOaYN6gEa16NWuYvunF4zUujJ1k9NqpJZA9LwElD7kX1pKNPFZaSNKtoq3G6vYmmJNMx2uzLUxzrmKG000Ezt9YIh');
 
     // Smooth scroll
@@ -703,7 +836,6 @@
         alert('An error occurred. Please try again.');
         console.error(err);
       }
-    });
-    </script>
+    });</script>
 </body>
 </html>

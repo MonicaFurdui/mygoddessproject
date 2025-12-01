@@ -1003,9 +1003,6 @@
 
         // Handle both mouse and touch events
         function handleMove(e) {
-            if (e.type === 'touchmove') {
-                e.preventDefault();
-            }
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
@@ -1020,9 +1017,9 @@
             spotlight.style.opacity = '0';
         });
 
-        // Touch events (mobile)
-        document.addEventListener('touchstart', handleMove, { passive: false });
-        document.addEventListener('touchmove', handleMove, { passive: false });
+        // Touch events (mobile) - WITHOUT preventDefault so scrolling works
+        document.addEventListener('touchstart', handleMove);
+        document.addEventListener('touchmove', handleMove);
         document.addEventListener('touchend', () => {
             setTimeout(() => {
                 spotlight.style.opacity = '0.3';
@@ -1039,7 +1036,5 @@
         }
         animate();
     </script>
-</body>
-</html>
 </body>
 </html>

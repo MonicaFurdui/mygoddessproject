@@ -51,7 +51,28 @@
             --cream: #fff7f9;
             --card-shadow: 0 8px 24px rgba(0,0,0,0.08);
         }
+        /* Cursor/Touch Spotlight Effect */
+        #spotlight {
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            background: radial-gradient( circle, rgba(236, 64, 122, 0.5) 0%, rgba(236, 64, 122, 0.3) 30%, rgba(236, 64, 122, 0.15) 60%, transparent 80% );
+            filter: blur(40px);
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
 
+        @media (min-width: 768px) {
+            #spotlight {
+                width: 200px;
+                height: 200px;
+                filter: blur(45px);
+            }
+        }
         /* FAQ section style */
         .faq-section {
             background-color: #ffe5eb;
@@ -240,7 +261,7 @@
         /* ====== IMPROVED HERO SECTION ====== */
         .hero {
             background: linear-gradient(135deg, #f48fb1 0%, #ec407a 100%);
-          /*  linear-gradient(135deg, #fde1ea 0%, #fff2f7 100%); */
+            /*  linear-gradient(135deg, #fde1ea 0%, #fff2f7 100%); */
             color: white;
             padding: 10rem 2rem 6rem;
             text-align: center;
@@ -678,6 +699,8 @@
     </style>
 </head>
 <body>
+    <!-- Cursor Spotlight Element -->
+    <div id="spotlight"></div>
     <!-- Header -->
     <header>
         <div class="header-content">
@@ -887,12 +910,13 @@
                 </div>
             </div>
             <div class="team-member">
-                
+
                 <div class="team-info">
                     <h3 class="team-name">TBD </h3>
                     <div class="team-role">Registered Nutritionist/Dietician</div>
                     <p class="team-bio">
-                        bio   </p>
+                        bio
+                    </p>
                 </div>
             </div>
             <div class="team-member">
@@ -964,12 +988,58 @@
       }
     });</script>
         -->
-  
-
     <!-- Vercel Analytics -->
     <script>
         window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="https://cdn.vercel-analytics.com/v1/script.js"></script>
+    <!-- Cursor Spotlight Script -->
+    <script>
+        const spotlight = document.getElementById('spotlight');
+        let currentX = window.innerWidth / 2;
+        let currentY = window.innerHeight / 2;
+        let targetX = currentX;
+        let targetY = currentY;
+
+        // Handle both mouse and touch events
+        function handleMove(e) {
+            if (e.type === 'touchmove') {
+                e.preventDefault();
+            }
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            targetX = clientX;
+            targetY = clientY;
+            spotlight.style.opacity = '1';
+        }
+
+        // Mouse events (desktop)
+        document.addEventListener('mousemove', handleMove);
+        document.addEventListener('mouseleave', () => {
+            spotlight.style.opacity = '0';
+        });
+
+        // Touch events (mobile)
+        document.addEventListener('touchstart', handleMove, { passive: false });
+        document.addEventListener('touchmove', handleMove, { passive: false });
+        document.addEventListener('touchend', () => {
+            setTimeout(() => {
+                spotlight.style.opacity = '0.3';
+            }, 1000);
+        });
+
+        // Smooth animation loop
+        function animate() {
+            currentX += (targetX - currentX) * 0.15;
+            currentY += (targetY - currentY) * 0.15;
+            spotlight.style.left = currentX + 'px';
+            spotlight.style.top = currentY + 'px';
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
 </body>
 </html>

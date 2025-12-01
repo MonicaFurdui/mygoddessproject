@@ -66,6 +66,52 @@
             opacity: 0;
         }
 
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+            .reveal.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        /* Different reveal styles */
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+            .reveal-left.active {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+            .reveal-right.active {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+            .reveal-scale.active {
+                opacity: 1;
+                transform: scale(1);
+            }
+
         @media (min-width: 768px) {
             #spotlight {
                 width: 100px;
@@ -727,7 +773,7 @@
     <section id="whats-included">
         <h2>What's Included in Your Transformation</h2>
         <div class="features-grid">
-            <div class="feature-card">
+            <div class="feature-card reveal">
                 <div class="feature-icon">💪</div>
                 <h3>Strength Training</h3>
                 <p>
@@ -735,27 +781,27 @@
                     private group where you can post videos of your form and ask questions to all coaches
                 </p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card reveal">
                 <div class="feature-icon">🥗</div>
                 <h3>Personalized Nutrition</h3>
                 <p>One-on-one montly sessions provided by our Registered Nutritionist. Custom meal plans designed specifically for you during onboarding. Weekly check-ins to keep you motivated and on track. Our Registered Nutritionist will calculate your macros and calories for each phase of the program. Eat more, weigh less, and fuel your goddess body. </p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card reveal">
                 <div class="feature-icon">👗</div>
                 <h3>Image Consulting</h3>
                 <p>One-on-one personalized Image Consulting & Mini Makeovers every 6 weeks with our Image Consultant. Weekly group calls to learn about trends and ask questions. Learn what flatters your body and so you dress like the goddess you are. Image consultant will be available for you daily so you are never confused in a change room.</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card reveal">
                 <div class="feature-icon">💋</div>
                 <h3>Goddess Confidence Coaching</h3>
                 <p>Weekly challenges to amplify your magnetism, and make you unforgettable. </p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card reveal">
                 <div class="feature-icon">👯</div>
                 <h3>Goddess Sisterhood</h3>
                 <p>Private community with daily support. You'll be paired up with another goddess so you never feel alone on your journey and make a friend.</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card reveal">
                 <div class="feature-icon">📱</div>
                 <h3>Your Personal Fitness App</h3>
                 <p>Everything in one place — workouts, meal plans, progress tracking, and direct coach access. Train anywhere, anytime.</p>
@@ -772,11 +818,11 @@
             </p>
 
             <div class="transformation-stats">
-                <div class="stat">
+                <div class="stat reveal-scale">
                     <div class="stat-number">4-in-1</div>
                     <div class="stat-label">Only Program With Fitness + Nutrition + Image + Confidence</div>
                 </div>
-                <div class="stat">
+                <div class="stat reveal-scale">
                     <div class="stat-number">100</div>
                     <div class="stat-label">Women Transforming on Jan 5th 2026 (Limited Spots)</div>
                 </div>
@@ -798,7 +844,7 @@
                 </strong>
             </p>
         </div>
-        <div class="pricing-card">
+        <div class="pricing-card reveal-scale">
             <h3>The Complete Goddess Program</h3>
             <div class="price">$250<span class="price-period">/month</span></div>
             <p style="margin-bottom: 2rem;">Cancel anytime. No long-term commitment required.</p>
@@ -898,7 +944,7 @@
         </p>
 
         <div class="team-grid">
-            <div class="team-member">
+            <div class="team-member reveal-left">
                 <img src="sam.jpg" alt="Sam Harrington" class="team-photo">
                 <div class="team-info">
                     <h3 class="team-name">Samantha Harrington</h3>
@@ -909,7 +955,7 @@
                     </p>
                 </div>
             </div>
-            <div class="team-member">
+            <div class="team-member reveal-right">
 
                 <div class="team-info">
                     <h3 class="team-name">TBD </h3>
@@ -919,7 +965,7 @@
                     </p>
                 </div>
             </div>
-            <div class="team-member">
+            <div class="team-member reveal-left">
                 <img src="samia.jpeg" alt="Samia Ribeiro" class="team-photo">
                 <div class="team-info">
                     <h3 class="team-name">Samia Ribeiro</h3>
@@ -931,7 +977,7 @@
                 </div>
             </div>
 
-            <div class="team-member">
+            <div class="team-member reveal-right">
                 <img src="jos.jpeg" alt="Jocelyne Sandoval" class="team-photo">
                 <div class="team-info">
                     <h3 class="team-name">Jocelyne Sandoval</h3>
@@ -1035,6 +1081,28 @@
             requestAnimationFrame(animate);
         }
         animate();
+        // Scroll Reveal Effect
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                const windowHeight = window.innerHeight;
+
+                // Trigger when element is 80% visible in viewport
+                if (elementTop < windowHeight * 0.85 && elementBottom > 0) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        // Run on scroll and on page load
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+        revealOnScroll(); // Initial check
+
     </script>
+
 </body>
 </html>

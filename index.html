@@ -453,33 +453,74 @@
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
             margin-bottom: 3rem;
         }
 
         .feature-card {
             background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s, box-shadow .3s;
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
         }
 
-            .feature-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            .feature-card::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(135deg, rgba(244, 143, 177, 0.05) 0%, rgba(236, 64, 122, 0.05) 100%);
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                pointer-events: none;
             }
 
+            .feature-card:hover {
+                transform: translateY(-10px) scale(1.02);
+                box-shadow: 0 20px 50px rgba(236, 64, 122, 0.2);
+                border-color: rgba(236, 64, 122, 0.3);
+            }
+
+                .feature-card:hover::after {
+                    opacity: 1;
+                }
+
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #f48fb1, #ec407a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
         }
 
         .feature-card h3 {
-            color: var(--brand-pink-1);
+            color: #2a2a2a;
             margin-bottom: 1rem;
             font-size: 1.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
         }
+
+            .feature-card h3::after {
+                content: "";
+                display: block;
+                width: 40px;
+                height: 3px;
+                background: linear-gradient(90deg, #f48fb1, #ec407a);
+                margin-top: 0.75rem;
+                border-radius: 2px;
+            }
 
         /* Transformation */
         .transformation {
